@@ -148,7 +148,7 @@ export function MagneticLink({
 
 export function AmbientMotion() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
       <motion.div
         className="absolute inset-x-[-22%] top-[-10%] h-[36rem] bg-[linear-gradient(115deg,transparent,rgba(230,168,106,0.16),rgba(244,200,139,0.07),transparent)] blur-[96px]"
         animate={{ x: [0, 70, 20, 0], y: [0, 35, -16, 0], opacity: [0.22, 0.4, 0.28, 0.22] }}

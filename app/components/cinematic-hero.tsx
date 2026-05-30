@@ -18,6 +18,8 @@ export function CinematicHero() {
   const showIntro = false;
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
+  const mobileFastMode = isMobile || prefersReducedMotion;
+  const visibleParticles = isMobile ? particles.slice(0, 2) : particles;
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const springX = useSpring(pointerX, { stiffness: 48, damping: 22, mass: 0.9 });
@@ -48,7 +50,7 @@ export function CinematicHero() {
     <section
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative isolate flex h-screen min-h-[680px] items-center justify-center overflow-hidden px-5 pt-28 md:min-h-[720px]"
+      className="relative isolate flex h-[100svh] min-h-[620px] items-center justify-center overflow-hidden px-5 pt-28 md:h-screen md:min-h-[720px]"
     >
       {/* Adds local hero keyframes for image-only Ken Burns motion and the bottom scroll cue. */}
       <style>{`
@@ -75,9 +77,9 @@ export function CinematicHero() {
 
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-18 bg-[radial-gradient(circle_at_20%_20%,rgba(244,200,139,0.11),transparent_26%),radial-gradient(circle_at_80%_30%,rgba(230,168,106,0.08),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(244,200,139,0.05),transparent_28%)] opacity-80 blur-[58px]"
-        animate={{ x: cloudDrift }}
-        transition={{ duration: isMobile ? 28 : 34, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute inset-0 -z-18 bg-[radial-gradient(circle_at_20%_20%,rgba(244,200,139,0.11),transparent_26%),radial-gradient(circle_at_80%_30%,rgba(230,168,106,0.08),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(244,200,139,0.05),transparent_28%)] opacity-80 blur-[22px] md:blur-[58px]"
+        animate={mobileFastMode ? undefined : { x: cloudDrift }}
+        transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Separates parallax from image zoom so Ken Burns affects only the background image layer. */}
@@ -88,46 +90,46 @@ export function CinematicHero() {
         animate={{ opacity: 1 }}
         transition={{ opacity: { duration: 1.1 } }}
       >
-        <div className="hero-kenburns absolute inset-0 bg-[url('/references/hero-main.png')] bg-cover bg-center" />
+        <div className="hero-bg-image hero-kenburns absolute inset-0 bg-cover bg-center" />
       </motion.div>
       <motion.div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[url('/references/hero-main.png')] bg-cover bg-center opacity-14 blur-lg"
-        animate={{ opacity: [0.07, 0.12, 0.08], scale: [1, isMobile ? 1.008 : 1.015, 1.006], x: isMobile ? [-4, 4, -4] : [-20, 20, -20], y: blurDrift }}
-        transition={{ duration: isMobile ? 24 : 30, repeat: Infinity, ease: "easeInOut" }}
+        className="hero-bg-image pointer-events-none absolute inset-0 -z-10 hidden bg-cover bg-center opacity-14 blur-lg md:block"
+        animate={{ opacity: [0.07, 0.12, 0.08], scale: [1, 1.015, 1.006], x: [-20, 20, -20], y: blurDrift }}
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[url('/references/hero-main.png')] bg-cover bg-center opacity-8 blur-2xl mix-blend-screen"
-        animate={{ opacity: [0.04, 0.09, 0.06], scale: [1.004, isMobile ? 1.014 : 1.024, 1.01], x: isMobile ? [4, -4, 4] : [20, -20, 20], y: blurDriftTwo }}
-        transition={{ duration: isMobile ? 28 : 38, repeat: Infinity, ease: "easeInOut" }}
+        className="hero-bg-image pointer-events-none absolute inset-0 -z-10 hidden bg-cover bg-center opacity-8 blur-2xl mix-blend-screen md:block"
+        animate={{ opacity: [0.04, 0.09, 0.06], scale: [1.004, 1.024, 1.01], x: [20, -20, 20], y: blurDriftTwo }}
+        transition={{ duration: 38, repeat: Infinity, ease: "easeInOut" }}
       />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_54%,rgba(244,200,139,0.065),transparent_25rem),linear-gradient(90deg,rgba(5,13,24,0.5)_0%,rgba(5,13,24,0.14)_48%,rgba(5,13,24,0.46)_100%),linear-gradient(180deg,rgba(5,13,24,0.28)_0%,rgba(5,13,24,0.06)_42%,rgba(5,13,24,0.58)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_34%,rgba(5,13,24,0.18)_64%,rgba(5,13,24,0.64)_100%)]" />
 
       <motion.div
         style={{ x: flareX, y: flareY }}
-        className="absolute left-[42%] top-[44%] z-0 h-60 w-60 rounded-full bg-[#F4C88B]/28 blur-[92px]"
-        animate={{ opacity: [0.16, 0.48, 0.24], scale: [0.86, 1.18, 0.94] }}
-        transition={{ duration: isMobile ? 8.5 : 10.5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-[42%] top-[44%] z-0 h-44 w-44 rounded-full bg-[#F4C88B]/18 blur-[38px] md:h-60 md:w-60 md:bg-[#F4C88B]/28 md:blur-[92px]"
+        animate={mobileFastMode ? undefined : { opacity: [0.16, 0.48, 0.24], scale: [0.86, 1.18, 0.94] }}
+        transition={{ duration: 10.5, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-[8%] top-[9%] z-0 h-[34rem] w-[34rem] rounded-full bg-[#D9B27A]/13 blur-[104px]"
-        animate={{ opacity: [0.22, 0.52, 0.3], y: isMobile ? [0, 8, 0] : [0, 30, 0], x: glowTravel }}
-        transition={{ duration: isMobile ? 8 : 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute right-[8%] top-[9%] z-0 hidden h-[34rem] w-[34rem] rounded-full bg-[#D9B27A]/13 blur-[104px] md:block"
+        animate={{ opacity: [0.22, 0.52, 0.3], y: [0, 30, 0], x: glowTravel }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-[4%] left-[5%] z-0 h-[38rem] w-[38rem] rounded-full bg-[#E6A86A]/18 blur-[108px]"
-        animate={{ opacity: [0.15, 0.4, 0.22], y: isMobile ? [0, -8, 0] : [0, -24, 0], x: glowTravelTwo }}
-        transition={{ duration: isMobile ? 9 : 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-[4%] left-[5%] z-0 hidden h-[38rem] w-[38rem] rounded-full bg-[#E6A86A]/18 blur-[108px] md:block"
+        animate={{ opacity: [0.15, 0.4, 0.22], y: [0, -24, 0], x: glowTravelTwo }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="absolute inset-0 z-0 bg-[linear-gradient(112deg,transparent_46%,rgba(244,200,139,0.12)_62%,transparent_78%)] opacity-70" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[180px] bg-[linear-gradient(to_bottom,transparent_0%,rgba(4,10,20,0.48)_45%,#050D18_100%)]" />
       <motion.div
-        className="absolute left-1/2 top-[47%] z-0 h-80 w-[48rem] -translate-x-1/2 rounded-full bg-[#F4C88B]/11 blur-[104px]"
+        className="absolute left-1/2 top-[47%] z-0 hidden h-80 w-[48rem] -translate-x-1/2 rounded-full bg-[#F4C88B]/11 blur-[104px] md:block"
         animate={{ opacity: [0.14, 0.3, 0.18], scale: [0.92, 1.06, 0.96] }}
         transition={{ duration: 9.5, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.svg className="absolute inset-0 z-0 h-full w-full overflow-visible" viewBox="0 0 1440 900" aria-hidden="true">
+      <motion.svg className="absolute inset-0 z-0 hidden h-full w-full overflow-visible md:block" viewBox="0 0 1440 900" aria-hidden="true">
         <defs>
           <linearGradient id="flagship-arc" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0%" stopColor="#E6B97A" stopOpacity="0" />
@@ -155,27 +157,27 @@ export function CinematicHero() {
         />
       </motion.svg>
       <motion.div
-        className="absolute right-[13%] top-[8%] z-0 h-[86%] w-px rotate-[18deg] bg-gradient-to-b from-transparent via-[#F4C88B]/26 to-transparent"
+        className="absolute right-[13%] top-[8%] z-0 hidden h-[86%] w-px rotate-[18deg] bg-gradient-to-b from-transparent via-[#F4C88B]/26 to-transparent md:block"
         animate={{ opacity: [0.18, 0.7, 0.24], x: isMobile ? [0, 8, 0] : [0, 30, 0] }}
         transition={{ duration: isMobile ? 6.6 : 6.4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-[25%] top-[0] z-0 h-full w-px rotate-[32deg] bg-gradient-to-b from-transparent via-white/16 to-transparent"
+        className="absolute right-[25%] top-[0] z-0 hidden h-full w-px rotate-[32deg] bg-gradient-to-b from-transparent via-white/16 to-transparent md:block"
         animate={{ opacity: [0.12, 0.5, 0.18], x: isMobile ? [0, -6, 0] : [0, -24, 0] }}
         transition={{ duration: isMobile ? 7 : 7.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
       />
 
-      {particles.map((particle) => (
+      {visibleParticles.map((particle) => (
         <motion.span
           key={particle.id}
-        className="absolute z-0 h-1 w-1 rounded-full bg-[#F4C88B]/45 shadow-[0_0_14px_rgba(244,200,139,0.38)]"
+        className="absolute z-0 h-1 w-1 rounded-full bg-[#F4C88B]/35 shadow-[0_0_14px_rgba(244,200,139,0.28)] md:bg-[#F4C88B]/45 md:shadow-[0_0_14px_rgba(244,200,139,0.38)]"
         style={{ left: particle.left, top: particle.top }}
         animate={
           isMobile
-            ? { opacity: [0, 0.28, 0], y: [0, -10 - (particle.id % 4) * 3, -20], x: [0, particle.id % 3 === 0 ? 4 : particle.id % 2 ? 3 : -3, 0] }
+            ? { opacity: [0.08, 0.28, 0.08] }
             : { opacity: [0, 0.32, 0], y: [0, -18 - (particle.id % 4) * 8, -44], x: [0, particle.id % 3 === 0 ? 14 : particle.id % 2 ? 7 : -10, 0] }
         }
-        transition={{ duration: 11 + (particle.id % 6), repeat: Infinity, ease: "easeInOut", delay: particle.delay }}
+        transition={{ duration: isMobile ? 3.8 : 11 + (particle.id % 6), repeat: Infinity, ease: "easeInOut", delay: particle.delay }}
       />
       ))}
 
@@ -186,15 +188,19 @@ export function CinematicHero() {
       <motion.svg
         viewBox="0 0 84 34"
         className="pointer-events-none absolute left-[56%] top-[42%] z-[2] h-auto w-[42px] text-[rgba(12,18,24,0.85)] blur-[0.2px] md:left-[58%] md:top-[44%] md:w-[42px]"
-        initial={{ x: isMobile ? -8 : -20, y: isMobile ? 4 : 8, opacity: 0.85, rotate: -4, scale: 0.95 }}
-        animate={{
-          x: isMobile ? [-8, 8, 24, 40] : [-20, 40, 120, 190],
-          y: isMobile ? [4, -2, -6, -2] : [8, -8, -16, -4],
-          opacity: 0.85,
-          rotate: isMobile ? [-4, -1, 2, 1] : [-4, 0, 5, 2],
-          scale: isMobile ? [0.95, 0.98, 1.02, 1] : [0.95, 1, 1.04, 1],
-        }}
-        transition={{ duration: isMobile ? 12 : 16, repeat: Infinity, repeatType: "loop", ease: "easeInOut" }}
+        initial={{ x: isMobile ? 8 : -20, y: isMobile ? -2 : 8, opacity: 0.85, rotate: isMobile ? 1 : -4, scale: isMobile ? 1 : 0.95 }}
+        animate={
+          isMobile
+            ? { opacity: [0.76, 0.9, 0.76] }
+            : {
+                x: [-20, 40, 120, 190],
+                y: [8, -8, -16, -4],
+                opacity: 0.85,
+                rotate: [-4, 0, 5, 2],
+                scale: [0.95, 1, 1.04, 1],
+              }
+        }
+        transition={{ duration: isMobile ? 4 : 16, repeat: Infinity, repeatType: "loop", ease: "easeInOut" }}
         aria-hidden="true"
       >
         <path
@@ -207,13 +213,13 @@ export function CinematicHero() {
       <div className="pointer-events-none absolute left-1/2 top-[46%] z-[1] h-[34rem] w-[92vw] max-w-[70vw] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,transparent_70%)] max-md:max-w-none" />
 
       <motion.div
-        className={`hero-content relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center pt-16 text-center will-change-[transform,opacity] md:pt-24 ${isMobile ? "-translate-y-[128px]" : "-translate-y-[210px]"}`}
+        className="hero-content relative z-10 mx-auto flex w-full max-w-5xl -translate-y-[128px] flex-col items-center pt-16 text-center will-change-[transform,opacity] md:-translate-y-[210px] md:pt-24"
       >
         <motion.div className="flex max-w-[850px] flex-col items-center">
           <motion.p
-            initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: isMobile ? 0.56 : 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: isMobile ? 0.42 : 0.8, delay: 0.04, ease: [0.22, 1, 0.36, 1] }}
             className="hero-subtitle text-xs font-semibold uppercase tracking-[0.3em] text-[#F4C88B]/78 will-change-[transform,opacity]"
           >
             Private Limited Technology Company
@@ -223,10 +229,10 @@ export function CinematicHero() {
               <motion.span
                 key={line}
                 className="hero-title block pb-[0.03em] will-change-[transform,opacity]"
-                initial={prefersReducedMotion ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 18, filter: "blur(6px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={mobileFastMode ? { opacity: 1, y: 0 } : { opacity: 0, y: 18, filter: "blur(6px)" }}
+                animate={mobileFastMode ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={
-                  prefersReducedMotion
+                  mobileFastMode
                     ? { duration: 0 }
                     : { duration: 0.8, delay: 0.12 + index * 0.18, ease: [0.22, 1, 0.36, 1] }
                 }
@@ -236,9 +242,9 @@ export function CinematicHero() {
             ))}
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: isMobile ? 0.58 : 0.8, delay: isMobile ? 0.86 : 1.95, ease: [0.22, 1, 0.36, 1] }}
+            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: isMobile ? 0.42 : 0.8, delay: isMobile ? 0.16 : 1.95, ease: [0.22, 1, 0.36, 1] }}
             className="hero-subtitle mt-8 max-w-3xl text-pretty text-base leading-8 text-[rgba(255,255,255,0.82)] [text-shadow:0_0_18px_rgba(0,0,0,0.18)] will-change-[transform,opacity] md:text-lg"
           >
             We engineer digital systems that shape market memory.
@@ -248,9 +254,9 @@ export function CinematicHero() {
             className="hero-actions mt-10 flex flex-col items-center gap-4 sm:flex-row"
           >
             <motion.div
-              initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: isMobile ? 0.6 : 0.75, delay: isMobile ? 1.14 : 2.3, ease: [0.22, 1, 0.36, 1] }}
+              initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
+              animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: isMobile ? 0.42 : 0.75, delay: isMobile ? 0.22 : 2.3, ease: [0.22, 1, 0.36, 1] }}
               className="will-change-[transform,opacity]"
             >
               <div className="group rounded-full">
@@ -263,9 +269,9 @@ export function CinematicHero() {
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: isMobile ? 0.6 : 0.75, delay: isMobile ? 1.24 : 2.42, ease: [0.22, 1, 0.36, 1] }}
+              initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
+              animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: isMobile ? 0.42 : 0.75, delay: isMobile ? 0.28 : 2.42, ease: [0.22, 1, 0.36, 1] }}
               className="will-change-[transform,opacity]"
             >
               <Link

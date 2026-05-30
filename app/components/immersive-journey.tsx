@@ -43,6 +43,9 @@ function SceneTitle({
   titleClassName?: string;
   textClassName?: string;
 }) {
+  const isMobile = useIsMobile();
+  const revealTransition = { duration: isMobile ? 0.42 : 0.75, ease: premiumEase };
+
   return (
     <motion.div
       variants={staggerContainer}
@@ -53,28 +56,28 @@ function SceneTitle({
     >
       <motion.p
         variants={fadeUp}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={revealTransition}
         className={`hidden text-xs font-semibold uppercase tracking-[0.28em] text-[#F4C88B]/64 md:block ${eyebrowClassName}`}
       >
         {eyebrow}
       </motion.p>
       <motion.p
         variants={fadeUp}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={revealTransition}
         className={`text-xs font-semibold uppercase tracking-[0.34em] text-[#F4C88B]/64 md:hidden ${eyebrowClassName}`}
       >
         {mobileEyebrow ?? eyebrow}
       </motion.p>
       <motion.h2
         variants={fadeUp}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={revealTransition}
         className={`mt-6 text-balance font-display text-[44px] font-medium leading-[1.05] tracking-[-0.024em] text-white md:text-7xl ${titleClassName}`}
       >
         {title}
       </motion.h2>
       <motion.p
         variants={fadeUp}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={revealTransition}
         className={`mt-7 max-w-2xl text-pretty text-lg leading-8 text-slate-300 ${textClassName}`}
       >
         {text}
@@ -87,6 +90,8 @@ export function ImmersiveJourney() {
   const { scrollYProgress } = useScroll();
   const prefersReducedMotion = useReducedMotion();
   const isMobile = useIsMobile();
+  const mobileFastMode = isMobile || prefersReducedMotion;
+  const sectionTransition = { duration: isMobile ? 0.42 : 0.75, ease: premiumEase };
   const slowDrift = useTransform(scrollYProgress, [0, 1], isMobile ? [0, -8] : [0, -32]);
   const counterDrift = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 6] : [0, 28]);
   const scene02BridgeOpacity = useTransform(scrollYProgress, [0.14, 0.24, 0.36], [0.08, 0.46, 0.12]);
@@ -101,31 +106,31 @@ export function ImmersiveJourney() {
         <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,#050D18_0%,#071426_32%,#050D18_68%,#050B14_100%)] opacity-88" />
         <motion.div
           style={{ opacity: scene02BridgeOpacity }}
-          className="pointer-events-none absolute left-[-12%] top-[14%] z-[2] h-[40rem] w-[76vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(230,168,106,0.14),rgba(244,200,139,0.06)_34%,transparent_74%)] blur-[155px]"
+          className="pointer-events-none absolute left-[-12%] top-[14%] z-[2] hidden h-[40rem] w-[76vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(230,168,106,0.14),rgba(244,200,139,0.06)_34%,transparent_74%)] blur-[155px] md:block"
         />
         <motion.div
           style={{ opacity: scene03BridgeOpacity }}
-          className="pointer-events-none absolute left-1/2 top-[38%] z-[2] h-[48rem] w-[74vw] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(18,36,62,0.34),rgba(5,13,24,0.2)_44%,transparent_74%)] blur-[160px]"
+          className="pointer-events-none absolute left-1/2 top-[38%] z-[2] hidden h-[48rem] w-[74vw] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(18,36,62,0.34),rgba(5,13,24,0.2)_44%,transparent_74%)] blur-[160px] md:block"
         />
         <motion.div
           style={{ opacity: scene04BridgeOpacity }}
-          className="pointer-events-none absolute right-[-8%] top-[58%] z-[2] h-[44rem] w-[66vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(212,175,110,0.12),rgba(230,168,106,0.045)_40%,transparent_74%)] blur-[155px]"
+          className="pointer-events-none absolute right-[-8%] top-[58%] z-[2] hidden h-[44rem] w-[66vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(212,175,110,0.12),rgba(230,168,106,0.045)_40%,transparent_74%)] blur-[155px] md:block"
         />
         <div className="pointer-events-none absolute inset-0 z-[60] bg-[repeating-radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.014)_0px,rgba(255,255,255,0.005)_1px,transparent_2px)] opacity-[0.026] mix-blend-soft-light" />
 
       <motion.section
-        className="relative z-10 mt-0 overflow-visible px-5 pb-[72px] pt-[96px] md:min-h-[82svh] md:pb-16 md:pt-16 md:-mt-10 lg:-mt-32"
+        className="scene-02 relative z-10 mt-0 min-h-[700px] overflow-visible px-5 pb-[72px] pt-[96px] md:min-h-[82svh] md:pb-16 md:pt-16 md:-mt-10 lg:-mt-32"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
         viewport={sectionViewport}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={sectionTransition}
       >
         <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_78%_0%,rgba(230,165,95,0.18)_0%,rgba(230,165,95,0.09)_18%,rgba(230,165,95,0.032)_38%,transparent_66%)]" />
-        <div className="pointer-events-none absolute -top-32 right-0 z-[2] h-[520px] w-[650px] rounded-full bg-[#E6A86A]/16 blur-[156px]" />
-        <motion.div style={{ y: slowDrift }} className="absolute right-[-12rem] top-10 h-[44rem] w-[44rem] rounded-full bg-[#E6A86A]/8 blur-[112px]" />
-        <motion.div style={{ y: counterDrift }} className="absolute left-[-14rem] bottom-10 h-[32rem] w-[32rem] rounded-full bg-[#F4C88B]/8 opacity-[0.18] blur-[140px]" />
-        <div className="pointer-events-none absolute left-1/2 top-[18%] h-24 w-[72vw] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.12),transparent_68%)] blur-2xl" />
+        <div className="pointer-events-none absolute -top-32 right-0 z-[2] hidden h-[520px] w-[650px] rounded-full bg-[#E6A86A]/16 blur-[156px] md:block" />
+        <motion.div style={{ y: slowDrift }} className="absolute right-[-12rem] top-10 hidden h-[44rem] w-[44rem] rounded-full bg-[#E6A86A]/8 blur-[112px] md:block" />
+        <motion.div style={{ y: counterDrift }} className="absolute left-[-14rem] bottom-10 hidden h-[32rem] w-[32rem] rounded-full bg-[#F4C88B]/8 opacity-[0.18] blur-[140px] md:block" />
+        <div className="pointer-events-none absolute left-1/2 top-[18%] h-20 w-[72vw] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.08),transparent_68%)] blur-xl md:h-24 md:bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.12),transparent_68%)] md:blur-2xl" />
         <div className="relative z-[5] mx-auto grid max-w-7xl items-start gap-10 overflow-visible md:items-center lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
           <SceneTitle
             eyebrow="OUR APPROACH"
@@ -138,11 +143,15 @@ export function ImmersiveJourney() {
           <div className="relative mx-auto min-h-[26rem] w-full max-w-[28rem] overflow-hidden md:min-h-[42rem] md:max-w-none lg:mx-0">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/10 to-transparent md:hidden" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/10 to-transparent md:hidden" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[20rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6A86A]/8 blur-[90px] md:hidden" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6A86A]/7 blur-[34px] md:hidden" />
             <motion.svg
               className="absolute inset-0 z-[4] h-full w-full overflow-visible md:hidden"
               viewBox="0 0 360 300"
               aria-hidden="true"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.42, ease: premiumEase }}
             >
               <defs>
                 <linearGradient id="signal-line-mobile" x1="0" x2="1" y1="0" y2="1">
@@ -163,27 +172,19 @@ export function ImmersiveJourney() {
                   fill="none"
                   stroke="url(#signal-line-mobile)"
                   strokeWidth={index === 0 ? 2 : 1.3}
-                  style={{ filter: "drop-shadow(0 0 5px rgba(212,170,105,0.12))" }}
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: [0, 1, 0.24], opacity: [0.18, 0.52, 0.18] }}
-                  viewport={{ once: true, margin: "-16%" }}
-                  transition={{ duration: 7 + index * 1.2, repeat: Infinity, ease: "easeInOut", delay: index * 0.28 }}
+                  opacity={index === 0 ? 0.48 : 0.24}
                 />
               ))}
             </motion.svg>
             <div className="absolute inset-0 z-[5] md:hidden">
               {["Strategy", "Design", "Engineering", "Scale"].map((word, index) => (
-                <motion.span
+                <span
                   key={word}
                   className="absolute text-[10px] font-medium uppercase tracking-[0.22em] text-slate-300/78"
                   style={{ left: `${18 + index * 20}%`, top: `${70 - (index % 2) * 40}%` }}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: index * 0.1 }}
                 >
                   {word}
-                </motion.span>
+                </span>
               ))}
             </div>
             <motion.p
@@ -242,12 +243,12 @@ export function ImmersiveJourney() {
       </motion.section>
 
       <motion.section
-        className="relative z-10 mt-0 overflow-x-clip px-5 pb-[64px] pt-[64px] md:min-h-[80svh] md:-mt-10 md:pb-20 md:pt-16 lg:-mt-20"
+        className="relative z-10 mt-0 min-h-[640px] overflow-x-clip px-5 pb-[64px] pt-[64px] md:min-h-[80svh] md:-mt-10 md:pb-20 md:pt-16 lg:-mt-20"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
         viewport={sectionViewport}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={sectionTransition}
       >
         <div className="pointer-events-none absolute inset-x-0 -top-28 h-72 bg-[linear-gradient(to_bottom,transparent,rgba(7,17,31,0.07)_42%,transparent)]" />
         <div className="relative mx-auto grid max-w-7xl items-start gap-10 md:items-center lg:grid-cols-[1.38fr_1fr] lg:gap-24">
@@ -265,44 +266,44 @@ export function ImmersiveJourney() {
           <div className="relative order-2 min-h-[22rem] md:order-1 md:min-h-[36rem] lg:-translate-y-7">
             <div className="mx-auto flex max-w-[320px] flex-col items-center gap-3 md:hidden">
               <motion.div
-                className="inline-flex items-center justify-center rounded-full border border-[#F4C88B]/18 bg-white/[0.05] px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-[#F8F6F1] shadow-[0_0_28px_rgba(244,200,139,0.08)] backdrop-blur-xl"
-                initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                className="inline-flex items-center justify-center rounded-full border border-[#F4C88B]/18 bg-white/[0.06] px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-[#F8F6F1] shadow-[0_0_28px_rgba(244,200,139,0.08)]"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.58, ease: premiumEase }}
+                transition={{ duration: 0.42, ease: premiumEase }}
               >
                 Enlivo Core
               </motion.div>
               <motion.div
                 className="h-8 w-px bg-gradient-to-b from-[#F4C88B]/72 via-[#D4AA69]/50 to-transparent"
-                animate={prefersReducedMotion ? undefined : { opacity: [0.42, 0.82, 0.42], scaleY: [0.92, 1, 0.92] }}
-                transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
+                animate={mobileFastMode ? { opacity: [0.42, 0.72, 0.42] } : { opacity: [0.42, 0.82, 0.42], scaleY: [0.92, 1, 0.92] }}
+                transition={{ duration: mobileFastMode ? 4 : 5.8, repeat: Infinity, ease: "easeInOut" }}
               />
               <div className="grid w-full gap-3">
                 {["Web Platforms", "Mobile Products", "AI Automation", "Digital Transformation"].map((item) => (
                   <motion.div
                     key={item}
                     className="flex items-center justify-center gap-3"
-                    initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.52, ease: premiumEase }}
+                    transition={{ duration: 0.42, ease: premiumEase }}
                   >
                     <motion.div
                       className="h-px w-6 bg-gradient-to-r from-transparent via-[#F4C88B]/45 to-transparent"
-                      animate={prefersReducedMotion ? undefined : { opacity: [0.34, 0.7, 0.34], scaleX: [0.92, 1, 0.92] }}
+                      animate={mobileFastMode ? undefined : { opacity: [0.34, 0.7, 0.34], scaleX: [0.92, 1, 0.92] }}
                       transition={{ duration: 5.2 + item.length * 0.04, repeat: Infinity, ease: "easeInOut" }}
                     />
                     <motion.div
-                      className="min-w-[210px] rounded-full border border-[#F4C88B]/18 bg-white/[0.05] px-4 py-2.5 text-center text-sm font-medium text-[#F8F6F1]/92 shadow-[0_0_24px_rgba(244,200,139,0.06)] backdrop-blur-xl"
-                      animate={prefersReducedMotion ? undefined : { y: [0, -2, 0], opacity: [0.88, 1, 0.88] }}
+                      className="min-w-[210px] rounded-full border border-[#F4C88B]/18 bg-white/[0.06] px-4 py-2.5 text-center text-sm font-medium text-[#F8F6F1]/92 shadow-[0_0_24px_rgba(244,200,139,0.06)]"
+                      animate={mobileFastMode ? undefined : { y: [0, -2, 0], opacity: [0.88, 1, 0.88] }}
                       transition={{ duration: 6.4 + item.length * 0.03, repeat: Infinity, ease: "easeInOut" }}
                     >
                       {item}
                     </motion.div>
                     <motion.div
                       className="h-px w-6 bg-gradient-to-r from-transparent via-[#F4C88B]/45 to-transparent"
-                      animate={prefersReducedMotion ? undefined : { opacity: [0.34, 0.7, 0.34], scaleX: [0.92, 1, 0.92] }}
+                      animate={mobileFastMode ? undefined : { opacity: [0.34, 0.7, 0.34], scaleX: [0.92, 1, 0.92] }}
                       transition={{ duration: 5.2 + item.length * 0.04, repeat: Infinity, ease: "easeInOut", delay: 0.12 }}
                     />
                   </motion.div>
@@ -423,7 +424,7 @@ export function ImmersiveJourney() {
         initial="hidden"
         whileInView="visible"
         viewport={sectionViewport}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={sectionTransition}
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_0%,rgba(230,165,95,0.1)_0%,rgba(230,165,95,0.04)_30%,transparent_62%)]" />
         <div className="pointer-events-none absolute inset-x-[12%] top-[10%] h-28 bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.07),transparent_70%)] blur-3xl" />
@@ -459,7 +460,7 @@ export function ImmersiveJourney() {
                 strokeWidth="3.8"
                 strokeLinecap="round"
                 pathLength="1"
-                animate={prefersReducedMotion ? undefined : { pathLength: [0.1, 1, 0.36], pathOffset: [0, -0.2, -0.44], opacity: [0.33, 1, 0.37] }}
+                animate={mobileFastMode ? undefined : { pathLength: [0.1, 1, 0.36], pathOffset: [0, -0.2, -0.44], opacity: [0.33, 1, 0.37] }}
                 transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                 style={{ filter: "drop-shadow(0 0 8px rgba(212,175,110,0.08))" }}
               />
@@ -467,7 +468,7 @@ export function ImmersiveJourney() {
                 r="7"
                 fill="#F4C88B"
                 animate={
-                  prefersReducedMotion
+                  mobileFastMode
                     ? undefined
                     : {
                         cx: [22, 310, 598, 875, 1170],
@@ -485,21 +486,21 @@ export function ImmersiveJourney() {
                 key={stage.label}
                 className="absolute"
                 style={{ left: stage.left, top: stage.top }}
-                initial={{ opacity: 0, y: 24 }}
+                initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: index * 0.18 }}
+                transition={{ duration: isMobile ? 0.42 : 1, delay: isMobile ? Math.min(index * 0.06, 0.08) : index * 0.18 }}
               >
                 <motion.p
                   className="text-3xl font-semibold tracking-normal text-white/80 md:text-5xl"
-                  animate={prefersReducedMotion ? undefined : { opacity: [0.72, 0.72, 1, 0.72, 0.72], scale: [1, 1, 1.04, 1, 1] }}
+                  animate={mobileFastMode ? undefined : { opacity: [0.72, 0.72, 1, 0.72, 0.72], scale: [1, 1, 1.04, 1, 1] }}
                   transition={{ duration: 7.2, repeat: Infinity, ease: "easeInOut", times: stagePulse(index) }}
                 >
                   {stage.label}
                 </motion.p>
                 <motion.p
                   className="mt-2 text-sm font-medium text-[#F4C88B]/70 md:text-base"
-                  animate={prefersReducedMotion ? undefined : { opacity: [0.42, 0.42, 0.95, 0.42, 0.42], y: [4, 4, 0, 4, 4] }}
+                  animate={mobileFastMode ? undefined : { opacity: [0.42, 0.42, 0.95, 0.42, 0.42], y: [4, 4, 0, 4, 4] }}
                   transition={{ duration: 7.2, repeat: Infinity, ease: "easeInOut", times: stagePulse(index) }}
                 >
                   {stage.copy}
@@ -516,34 +517,34 @@ export function ImmersiveJourney() {
         initial="hidden"
         whileInView="visible"
         viewport={sectionViewport}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        transition={sectionTransition}
       >
-        <motion.div className="absolute left-1/2 top-1/2 h-[44rem] w-[44rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6A86A]/10 blur-3xl" animate={prefersReducedMotion ? undefined : { scale: [0.9, 1.12, 0.9] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+        <motion.div className="absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6A86A]/8 blur-2xl md:h-[44rem] md:w-[44rem] md:bg-[#E6A86A]/10 md:blur-3xl" animate={mobileFastMode ? undefined : { scale: [0.9, 1.12, 0.9] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
         <div className="relative mx-auto w-full max-w-7xl -translate-y-3">
           <div className="pointer-events-none absolute -left-16 top-0 h-64 w-[46rem] rounded-full bg-[#E6A86A]/12 blur-3xl" />
           <motion.p
-            initial={{ opacity: 0, y: 28 }}
+            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-18%" }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: isMobile ? 0.42 : 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative max-w-[57.5rem] text-balance font-display text-6xl font-semibold leading-[1] tracking-[-0.028em] text-white md:text-8xl"
           >
             Build the digital presence markets remember.
           </motion.p>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.16 }}
+            transition={{ duration: isMobile ? 0.42 : 0.8, delay: isMobile ? 0.08 : 0.16 }}
             className="mt-8 max-w-2xl text-pretty text-lg leading-8 text-slate-300/82"
           >
             Turn your website, product, and automation systems into digital experiences your market remembers.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.25 }}
+            transition={{ duration: isMobile ? 0.42 : 0.8, delay: isMobile ? 0.08 : 0.25 }}
             className="group relative mt-12 inline-flex"
           >
             <span className="pointer-events-none absolute -inset-8 rounded-full bg-[#E6A86A]/14 blur-3xl transition duration-500 group-hover:bg-[#E6A86A]/20" />
