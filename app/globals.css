@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #050d18;
+  --bg-secondary: #08182b;
+  --accent-warm: #e6a86a;
+  --accent-gold: #d9b27a;
+  --accent-glow: #f4c88b;
+  --text-primary: #f8f6f1;
+  --text-muted: rgba(248, 246, 241, 0.72);
+  --font-display: "Clash Display", "Cabinet Grotesk", "Satoshi", "General Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  --font-sans: Satoshi, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 78% 8%, rgba(230, 168, 106, 0.045), transparent 34rem),
+    linear-gradient(180deg, #050d18 0%, #071426 42%, #050d18 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Satoshi, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(244, 200, 139, 0.34);
+  color: var(--text-primary);
+}
+
+.premium-bg {
+  background:
+    radial-gradient(circle at 22% 4%, rgba(230, 168, 106, 0.13), transparent 36rem),
+    radial-gradient(circle at 82% 12%, rgba(217, 178, 122, 0.08), transparent 42rem),
+    linear-gradient(180deg, #050d18 0%, #08182b 46%, #050d18 100%);
+}
+
+.glass-panel {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: linear-gradient(145deg, rgba(248, 246, 241, 0.08), rgba(230, 168, 106, 0.035));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(22px);
+}
+
+.premium-card {
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(9, 16, 28, 0.48)),
+    radial-gradient(circle at 16% 0%, rgba(230, 168, 106, 0.11), transparent 24rem);
+  box-shadow: 0 24px 74px rgba(0, 0, 0, 0.28);
+}
+
+.blue-panel {
+  border: 1px solid rgba(244, 200, 139, 0.2);
+  background:
+    radial-gradient(circle at 14% 12%, rgba(230, 168, 106, 0.17), transparent 32rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(5, 13, 24, 0.9));
+  box-shadow: 0 28px 94px rgba(0, 0, 0, 0.34), 0 0 96px rgba(244, 200, 139, 0.065);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.hero-content,
+.hero-title,
+.hero-subtitle,
+.hero-actions,
+.motion-reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.motion-reveal {
+  filter: blur(0px) !important;
+}
+
+.hero-content,
+.hero-title,
+.hero-subtitle,
+.hero-actions {
+  filter: blur(0px) !important;
+}
+
+@keyframes careerIconGoldPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.16);
+  }
+
+  50% {
+    box-shadow: 0 0 34px rgba(212, 175, 55, 0.28);
+  }
+}
+
+.group:hover .career-icon-pulse {
+  animation: careerIconGoldPulse 1.45s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .career-icon-pulse {
+    animation: none;
+  }
 }
