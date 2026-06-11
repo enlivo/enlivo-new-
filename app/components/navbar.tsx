@@ -8,13 +8,22 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems } from "../lib/content";
 
+const mobileNavItems = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "How We Work", href: "/#how-we-work" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
+
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute inset-x-0 top-[26px] z-50 px-5">
-      <nav className="relative mx-auto flex h-[60px] w-full max-w-[1180px] items-center justify-between rounded-full border border-[#F4C88B]/18 bg-[rgba(8,10,14,0.34)] px-[18px] shadow-[0_18px_60px_rgba(0,0,0,0.25)] backdrop-blur-[22px] backdrop-saturate-[140%]">
+    <header className="fixed left-0 right-0 top-0 z-50 h-20 md:absolute md:inset-x-0 md:top-[26px] md:h-auto md:px-5">
+      <nav className="relative flex h-full w-full max-w-[390px] items-center justify-between border-b border-white/10 bg-[rgba(5,13,24,0.72)] px-5 shadow-[0_14px_44px_rgba(0,0,0,0.22)] backdrop-blur-[18px] backdrop-saturate-[140%] md:mx-auto md:h-[60px] md:max-w-[1180px] md:rounded-full md:border md:border-[#F4C88B]/22 md:bg-[rgba(8,10,14,0.34)] md:px-[18px] md:shadow-[0_18px_60px_rgba(0,0,0,0.25)] md:backdrop-blur-[22px]">
         <Link
           href="/"
           className="group flex min-w-0 items-center gap-3 overflow-visible"
@@ -28,7 +37,7 @@ export function Navbar() {
             height={640}
             priority
             sizes="54px"
-            className="h-[54px] w-auto shrink-0 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.12)] transition duration-300 group-hover:brightness-125"
+            className="h-[46px] w-auto shrink-0 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.12)] transition duration-300 group-hover:brightness-125 md:h-[54px]"
           />
           <span className="flex min-w-max flex-col justify-center overflow-visible leading-none">
             <span className="block text-[14px] font-semibold tracking-[0.31em] text-[#F8F6F1]/94 sm:text-[15px]">
@@ -79,7 +88,7 @@ export function Navbar() {
           type="button"
           aria-label={open ? "Close navigation" : "Open navigation"}
           onClick={() => setOpen((value) => !value)}
-          className="grid h-10 w-10 place-items-center rounded-full border border-[#F4C88B]/18 bg-[#F8F1E4]/[0.05] text-[#F8F6F1] backdrop-blur-xl transition hover:-translate-y-px hover:border-[#F4C88B]/28 hover:text-[#F4C88B] lg:hidden"
+          className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#F4C88B]/18 bg-white/[0.05] text-[#F8F6F1] backdrop-blur-xl transition hover:-translate-y-px hover:border-[#F4C88B]/28 hover:text-[#F4C88B] lg:hidden"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -89,9 +98,9 @@ export function Navbar() {
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mx-auto mt-4 max-w-[1180px] rounded-[2rem] border border-[#F4C88B]/18 bg-[rgba(8,10,14,0.62)] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-[22px] backdrop-saturate-[140%] lg:hidden"
+          className="fixed inset-x-5 top-20 z-50 rounded-[1.5rem] border border-[#F4C88B]/18 bg-[rgba(8,10,14,0.9)] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.34)] backdrop-blur-[18px] backdrop-saturate-[140%] md:static md:mx-auto md:mt-4 md:w-auto md:max-w-[1180px] md:rounded-[2rem] md:bg-[rgba(8,10,14,0.62)] md:backdrop-blur-[22px] lg:hidden"
         >
-          {navItems.map((item) => {
+          {mobileNavItems.map((item) => {
             const active = pathname === item.href;
             return (
               <Link
@@ -113,7 +122,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="mt-2 block rounded-2xl bg-[#F8F1E4] px-4 py-3 text-center text-[13px] font-semibold text-[#111827] transition hover:shadow-[0_16px_48px_rgba(244,200,139,0.25)]"
           >
-            Start a Project
+            Start Your Project
           </Link>
         </motion.div>
       ) : null}

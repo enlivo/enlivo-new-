@@ -19,6 +19,79 @@ const transformationStages = [
   { label: "Scale", copy: "Growth systems", left: "80%", top: "54%" },
 ];
 
+const outcomeEngineStages = [
+  {
+    number: "01",
+    title: "Perception",
+    copy: "Build brand trust",
+  },
+  {
+    number: "02",
+    title: "Conversion",
+    copy: "Turn attention into qualified leads",
+  },
+  {
+    number: "03",
+    title: "Automation",
+    copy: "Reduce manual work and speed up operations",
+  },
+  {
+    number: "04",
+    title: "Scale",
+    copy: "Create repeatable growth systems",
+  },
+];
+
+const marketLeaderJourney = [
+  {
+    number: "01",
+    title: "Strategy",
+    copy: "We map the market, audience, and growth direction.",
+    side: "left",
+  },
+  {
+    number: "02",
+    title: "Design",
+    copy: "We shape premium interfaces that build trust.",
+    side: "right",
+  },
+  {
+    number: "03",
+    title: "Engineering",
+    copy: "We build fast, scalable, production-ready systems.",
+    side: "left",
+  },
+  {
+    number: "04",
+    title: "Scale",
+    copy: "We automate, optimize, and prepare for growth.",
+    side: "right",
+  },
+];
+
+const capabilityModules = [
+  {
+    number: "01",
+    title: "Web Platforms",
+    copy: "Websites, dashboards, and web apps",
+  },
+  {
+    number: "02",
+    title: "Mobile Products",
+    copy: "Mobile-first product experiences",
+  },
+  {
+    number: "03",
+    title: "AI Automation",
+    copy: "Smarter workflows and operations",
+  },
+  {
+    number: "04",
+    title: "Digital Transformation",
+    copy: "Systems that scale business growth",
+  },
+];
+
 function stagePulse(index: number) {
   const peak = (index + 0.5) / transformationStages.length;
   return [0, Math.max(0, peak - 0.08), peak, Math.min(1, peak + 0.08), 1];
@@ -119,7 +192,8 @@ export function ImmersiveJourney() {
         <div className="pointer-events-none absolute inset-0 z-[60] bg-[repeating-radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.014)_0px,rgba(255,255,255,0.005)_1px,transparent_2px)] opacity-[0.026] mix-blend-soft-light" />
 
       <motion.section
-        className="scene-02 relative z-10 mt-0 min-h-[700px] overflow-visible px-5 pb-[72px] pt-[96px] md:min-h-[82svh] md:pb-16 md:pt-16 md:-mt-10 lg:-mt-32"
+        id="how-we-work"
+        className="scene-02 relative z-10 mt-0 min-h-[700px] overflow-visible px-6 pb-[84px] pt-[96px] md:min-h-[82svh] md:px-5 md:pb-16 md:pt-16 md:-mt-10 lg:-mt-32"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -140,53 +214,56 @@ export function ImmersiveJourney() {
             className="lg:translate-y-8"
             titleClassName="max-md:mt-5 max-md:max-w-[11ch] max-md:text-[44px] max-md:leading-[1.05]"
           />
-          <div className="relative mx-auto min-h-[26rem] w-full max-w-[28rem] overflow-hidden md:min-h-[42rem] md:max-w-none lg:mx-0">
+          <div className="relative mx-auto w-full max-w-[25rem] overflow-visible md:min-h-[42rem] md:max-w-none md:overflow-hidden lg:mx-0">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/10 to-transparent md:hidden" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/10 to-transparent md:hidden" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6A86A]/7 blur-[34px] md:hidden" />
-            <motion.svg
-              className="absolute inset-0 z-[4] h-full w-full overflow-visible md:hidden"
-              viewBox="0 0 360 300"
-              aria-hidden="true"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.42, ease: premiumEase }}
+            <motion.div
+              className="relative z-[6] mt-8 px-1 pb-8 md:hidden"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.36 }}
             >
-              <defs>
-                <linearGradient id="signal-line-mobile" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stopColor="#E6A86A" stopOpacity="0" />
-                  <stop offset="44%" stopColor="#D4AA69" stopOpacity="0.36" />
-                  <stop offset="58%" stopColor="#E8C280" stopOpacity="0.58" />
-                  <stop offset="100%" stopColor="#F8F6F1" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              {[
-                "M18 224 C92 120 132 244 344 70",
-                "M46 108 C116 54 150 176 320 154",
-                "M74 250 C118 190 218 198 292 62",
-              ].map((path, index) => (
-                <motion.path
-                  key={path}
-                  d={path}
-                  fill="none"
-                  stroke="url(#signal-line-mobile)"
-                  strokeWidth={index === 0 ? 2 : 1.3}
-                  opacity={index === 0 ? 0.48 : 0.24}
-                />
-              ))}
-            </motion.svg>
-            <div className="absolute inset-0 z-[5] md:hidden">
-              {["Strategy", "Design", "Engineering", "Scale"].map((word, index) => (
-                <span
-                  key={word}
-                  className="absolute text-[10px] font-medium uppercase tracking-[0.22em] text-slate-300/78"
-                  style={{ left: `${18 + index * 20}%`, top: `${70 - (index % 2) * 40}%` }}
-                >
-                  {word}
-                </span>
-              ))}
-            </div>
+              <div className="pointer-events-none absolute left-3 top-6 h-[calc(100%-4rem)] w-px bg-white/[0.08]" />
+              <motion.div
+                className="pointer-events-none absolute left-3 top-6 h-[calc(100%-4rem)] w-px origin-top bg-gradient-to-b from-transparent via-[#F4C88B]/80 to-transparent"
+                initial={prefersReducedMotion ? { opacity: 0.72, scaleY: 1 } : { opacity: 0, scaleY: 0 }}
+                whileInView={{ opacity: 1, scaleY: 1 }}
+                viewport={{ once: true, amount: 0.36 }}
+                transition={{ duration: 0.68, delay: 0.18, ease: premiumEase }}
+              />
+              <div className="relative grid gap-3">
+                {marketLeaderJourney.map((step, index) => (
+                    <motion.div
+                      key={step.number}
+                      className="relative pl-10 pr-1"
+                      initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.44 }}
+                      transition={{ duration: 0.56, delay: 0.42 + index * 0.12, ease: premiumEase }}
+                    >
+                      <span className="absolute left-[0.45rem] top-8 z-20 h-2.5 w-2.5 rounded-full border border-[#F4C88B]/70 bg-[#071426] shadow-[0_0_15px_rgba(244,200,139,0.52)]" />
+                      <motion.span
+                        className="pointer-events-none absolute left-7 right-1 -top-7 h-24 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.14),rgba(230,168,106,0.05)_42%,transparent_72%)]"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: prefersReducedMotion ? 0.14 : [0, 0.42, 0.14] }}
+                        viewport={{ once: true, amount: 0.44 }}
+                        transition={{ duration: 0.66, delay: 0.44 + index * 0.12, ease: premiumEase }}
+                      />
+                      <div className="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.095),rgba(9,18,32,0.76)),radial-gradient(circle_at_16%_0%,rgba(244,200,139,0.13),transparent_42%)] px-4 py-4 shadow-[0_18px_46px_rgba(0,0,0,0.24)] backdrop-blur">
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/35 to-transparent" />
+                        <div className="flex items-center gap-3">
+                          <span className="rounded-full border border-[#F4C88B]/20 bg-[#F4C88B]/10 px-2.5 py-1 text-[0.66rem] font-semibold tracking-[0.22em] text-[#F4C88B]">
+                            {step.number}
+                          </span>
+                          <span className="h-px flex-1 bg-gradient-to-r from-[#F4C88B]/50 to-transparent" />
+                        </div>
+                        <h3 className="mt-3 text-xl font-semibold tracking-[-0.01em] text-white">{step.title}</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-200/86">{step.copy}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
+            </motion.div>
             <motion.p
               className="absolute left-0 top-8 hidden max-w-4xl text-[16vw] font-semibold leading-none tracking-normal text-white/[0.035] md:block md:text-[9rem]"
               animate={{ x: [-18, 18, -18], opacity: [0.028, 0.06, 0.028] }}
@@ -208,19 +285,28 @@ export function ImmersiveJourney() {
                 "M110 212 C310 84 444 376 794 310",
                 "M180 534 C302 402 520 434 708 110",
               ].map((path, index) => (
-                <motion.path
-                  key={path}
-                  d={path}
-                  fill="none"
-                  stroke="url(#signal-line)"
-                  strokeWidth={index === 0 ? 2.4 : 1.44}
-                  style={{ filter: "drop-shadow(0 0 6px rgba(212,170,105,0.14))" }}
-                  pathLength="1"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: [0, 1, 0.28], opacity: [0.22, 0.82, 0.28] }}
-                  viewport={{ once: true, margin: "-20%" }}
-                  transition={{ duration: 7 + index * 1.4, repeat: Infinity, ease: "easeInOut", delay: index * 0.45 }}
-                />
+                <g key={path}>
+                  <path
+                    d={path}
+                    fill="none"
+                    stroke="url(#signal-line)"
+                    strokeWidth={index === 0 ? 2.2 : 1.3}
+                    opacity={index === 0 ? 0.32 : 0.18}
+                    strokeLinecap="round"
+                  />
+                  <motion.path
+                    d={path}
+                    fill="none"
+                    stroke="url(#signal-line)"
+                    strokeWidth={index === 0 ? 2.8 : 1.6}
+                    strokeLinecap="round"
+                    style={{ filter: "drop-shadow(0 0 6px rgba(212,170,105,0.14))" }}
+                    pathLength={1}
+                    initial={prefersReducedMotion ? { pathLength: 1, opacity: index === 0 ? 0.62 : 0.34 } : { pathLength: 0.001, opacity: 0.36 }}
+                    animate={{ pathLength: 1, opacity: index === 0 ? 0.72 : 0.4 }}
+                    transition={{ duration: 1.05 + index * 0.16, ease: premiumEase, delay: 0.12 + index * 0.12 }}
+                  />
+                </g>
               ))}
             </motion.svg>
             <div className="absolute inset-0 z-[5] hidden md:block">
@@ -243,7 +329,7 @@ export function ImmersiveJourney() {
       </motion.section>
 
       <motion.section
-        className="relative z-10 mt-0 min-h-[640px] overflow-x-clip px-5 pb-[64px] pt-[64px] md:min-h-[80svh] md:-mt-10 md:pb-20 md:pt-16 lg:-mt-20"
+        className="relative z-10 mt-0 min-h-[640px] overflow-x-clip px-6 pb-[92px] pt-[64px] md:min-h-[80svh] md:-mt-10 md:px-5 md:pb-20 md:pt-16 lg:-mt-20"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -252,62 +338,113 @@ export function ImmersiveJourney() {
       >
         <div className="pointer-events-none absolute inset-x-0 -top-28 h-72 bg-[linear-gradient(to_bottom,transparent,rgba(7,17,31,0.07)_42%,transparent)]" />
         <div className="relative mx-auto grid max-w-7xl items-start gap-10 md:items-center lg:grid-cols-[1.38fr_1fr] lg:gap-24">
-          <SceneTitle
-            eyebrow="CAPABILITIES"
-            mobileEyebrow="CAPABILITIES"
-            title="Four disciplines. One outcome."
-            text="Web platforms, mobile products, AI automation, and digital transformation work together as one connected system for business growth."
-            className="order-1 max-w-3xl md:order-2"
-            eyebrowClassName="!text-[#F4C88B]/[0.72]"
-            titleClassName="!mt-10 !text-[46px] !leading-[1.05] md:!mt-6 md:!text-[4.56rem] md:!leading-[1.08]"
-            textClassName="!max-w-[490px] !text-slate-300/80"
-          />
+          <div className="order-1 max-w-3xl md:hidden">
+            <motion.p
+              className="text-xs font-semibold uppercase tracking-[0.34em] text-[#F4C88B]/[0.72]"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.46, ease: premiumEase }}
+            >
+              CAPABILITIES
+            </motion.p>
+            <motion.h2
+              className="mt-10 text-balance font-display text-[46px] font-medium leading-[1.05] tracking-[-0.024em] text-white"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.52, delay: 0.04, ease: premiumEase }}
+            >
+              Four disciplines. One outcome.
+            </motion.h2>
+            <motion.p
+              className="mt-7 max-w-[490px] text-pretty text-lg leading-8 text-slate-300/80"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.52, delay: 0.1, ease: premiumEase }}
+            >
+              Web platforms, mobile products, AI automation, and digital transformation work together as one connected system for business growth.
+            </motion.p>
+          </div>
+          <div className="order-1 hidden max-w-3xl md:order-2 md:block">
+            <SceneTitle
+              eyebrow="CAPABILITIES"
+              mobileEyebrow="CAPABILITIES"
+              title="Four disciplines. One outcome."
+              text="Web platforms, mobile products, AI automation, and digital transformation work together as one connected system for business growth."
+              eyebrowClassName="!text-[#F4C88B]/[0.72]"
+              titleClassName="!mt-10 !text-[46px] !leading-[1.05] md:!mt-6 md:!text-[4.56rem] md:!leading-[1.08]"
+              textClassName="!max-w-[490px] !text-slate-300/80"
+            />
+          </div>
 
           <div className="relative order-2 min-h-[22rem] md:order-1 md:min-h-[36rem] lg:-translate-y-7">
-            <div className="mx-auto flex max-w-[320px] flex-col items-center gap-3 md:hidden">
+            <div className="mx-auto flex max-w-[350px] flex-col items-center px-1 pb-8 md:hidden">
               <motion.div
-                className="inline-flex items-center justify-center rounded-full border border-[#F4C88B]/18 bg-white/[0.06] px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-[#F8F6F1] shadow-[0_0_28px_rgba(244,200,139,0.08)]"
-                initial={{ opacity: 0, y: 10 }}
+                className="relative inline-flex items-center justify-center overflow-hidden rounded-full border border-[#F4C88B]/30 bg-white/[0.075] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.24em] text-[#F8F6F1] shadow-[0_0_34px_rgba(244,200,139,0.12)]"
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.42, ease: premiumEase }}
+                viewport={{ once: true, amount: 0.42 }}
+                transition={{ duration: 0.48, ease: premiumEase }}
               >
-                Enlivo Core
+                <motion.span
+                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.24),transparent_68%)]"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: prefersReducedMotion ? 0.2 : [0, 0.62, 0.22] }}
+                  viewport={{ once: true, amount: 0.42 }}
+                  transition={{ duration: 0.64, delay: 0.08, ease: premiumEase }}
+                />
+                <span className="relative">Enlivo Core</span>
               </motion.div>
-              <motion.div
-                className="h-8 w-px bg-gradient-to-b from-[#F4C88B]/72 via-[#D4AA69]/50 to-transparent"
-                animate={mobileFastMode ? { opacity: [0.42, 0.72, 0.42] } : { opacity: [0.42, 0.82, 0.42], scaleY: [0.92, 1, 0.92] }}
-                transition={{ duration: mobileFastMode ? 4 : 5.8, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <div className="grid w-full gap-3">
-                {["Web Platforms", "Mobile Products", "AI Automation", "Digital Transformation"].map((item) => (
-                  <motion.div
-                    key={item}
-                    className="flex items-center justify-center gap-3"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.42, ease: premiumEase }}
-                  >
+
+              <div className="relative mt-4 w-full pb-2">
+                <div className="pointer-events-none absolute left-1/2 top-0 h-[calc(100%-0.5rem)] w-px -translate-x-1/2 bg-white/[0.08]" />
+                <motion.div
+                  className="pointer-events-none absolute left-1/2 top-0 h-[calc(100%-0.5rem)] w-px origin-top -translate-x-1/2 bg-gradient-to-b from-[#F4C88B]/82 via-[#D4AA69]/58 to-transparent"
+                  initial={prefersReducedMotion ? { opacity: 0.82, scaleY: 1 } : { opacity: 0, scaleY: 0 }}
+                  whileInView={{ opacity: 1, scaleY: 1 }}
+                  viewport={{ once: true, amount: 0.38 }}
+                  transition={{ duration: 0.65, delay: 0.18, ease: premiumEase }}
+                />
+                <motion.span
+                  className="pointer-events-none absolute left-1/2 top-0 z-20 h-3 w-3 -translate-x-1/2 rounded-full bg-[#F4C88B] shadow-[0_0_18px_rgba(244,200,139,0.76)]"
+                  initial={prefersReducedMotion ? { opacity: 0.85, y: 0 } : { opacity: 0, y: 0 }}
+                  whileInView={prefersReducedMotion ? { opacity: 0.85, y: 0 } : { opacity: [0, 1, 1, 0], y: [0, 0, 500, 500] }}
+                  viewport={{ once: true, amount: 0.38 }}
+                  transition={{ duration: 1.78, delay: 0.24, ease: premiumEase, times: [0, 0.12, 0.9, 1] }}
+                />
+                <div className="grid gap-3 pt-4">
+                  {capabilityModules.map((item, index) => (
                     <motion.div
-                      className="h-px w-6 bg-gradient-to-r from-transparent via-[#F4C88B]/45 to-transparent"
-                      animate={mobileFastMode ? undefined : { opacity: [0.34, 0.7, 0.34], scaleX: [0.92, 1, 0.92] }}
-                      transition={{ duration: 5.2 + item.length * 0.04, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                    <motion.div
-                      className="min-w-[210px] rounded-full border border-[#F4C88B]/18 bg-white/[0.06] px-4 py-2.5 text-center text-sm font-medium text-[#F8F6F1]/92 shadow-[0_0_24px_rgba(244,200,139,0.06)]"
-                      animate={mobileFastMode ? undefined : { y: [0, -2, 0], opacity: [0.88, 1, 0.88] }}
-                      transition={{ duration: 6.4 + item.length * 0.03, repeat: Infinity, ease: "easeInOut" }}
+                      key={item.number}
+                      className="relative mx-auto w-full max-w-[318px]"
+                      initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.44 }}
+                      transition={{ duration: 0.54, delay: 0.38 + index * 0.13, ease: premiumEase }}
                     >
-                      {item}
+                      <motion.span
+                        className="pointer-events-none absolute inset-x-5 -top-6 h-24 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.15),rgba(230,168,106,0.055)_44%,transparent_72%)]"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: prefersReducedMotion ? 0.13 : [0, 0.4, 0.13] }}
+                        viewport={{ once: true, amount: 0.44 }}
+                        transition={{ duration: 0.6, delay: 0.42 + index * 0.13, ease: premiumEase }}
+                      />
+                      <div className="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.095),rgba(9,18,32,0.78)),radial-gradient(circle_at_14%_0%,rgba(244,200,139,0.13),transparent_42%)] px-4 py-3.5 shadow-[0_16px_40px_rgba(0,0,0,0.22)] backdrop-blur">
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/42 to-transparent" />
+                        <div className="flex items-center gap-3">
+                          <span className="rounded-full border border-[#F4C88B]/20 bg-[#F4C88B]/10 px-2.5 py-1 text-[0.66rem] font-semibold tracking-[0.22em] text-[#F4C88B]">
+                            {item.number}
+                          </span>
+                          <span className="h-px flex-1 bg-gradient-to-r from-[#F4C88B]/48 to-transparent" />
+                        </div>
+                        <h3 className="mt-3 text-lg font-semibold tracking-[-0.01em] text-white">{item.title}</h3>
+                        <p className="mt-1.5 text-sm leading-6 text-slate-200/84">{item.copy}</p>
+                      </div>
                     </motion.div>
-                    <motion.div
-                      className="h-px w-6 bg-gradient-to-r from-transparent via-[#F4C88B]/45 to-transparent"
-                      animate={mobileFastMode ? undefined : { opacity: [0.34, 0.7, 0.34], scaleX: [0.92, 1, 0.92] }}
-                      transition={{ duration: 5.2 + item.length * 0.04, repeat: Infinity, ease: "easeInOut", delay: 0.12 }}
-                    />
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -419,7 +556,7 @@ export function ImmersiveJourney() {
       </motion.section>
 
       <motion.section
-        className="relative z-10 min-h-[76svh] overflow-visible px-5 py-16"
+        className="relative z-10 overflow-visible px-6 pb-24 pt-14 md:min-h-[76svh] md:px-5 md:py-16"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -429,13 +566,131 @@ export function ImmersiveJourney() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_0%,rgba(230,165,95,0.1)_0%,rgba(230,165,95,0.04)_30%,transparent_62%)]" />
         <div className="pointer-events-none absolute inset-x-[12%] top-[10%] h-28 bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.07),transparent_70%)] blur-3xl" />
         <div className="mx-auto max-w-7xl">
-          <SceneTitle
-            eyebrow="WORK SHOWCASE"
-            title="From presence to momentum."
-            text="We turn digital presence into measurable business movement — better trust, stronger leads, automated workflows, and scalable growth."
-            className="ml-auto max-w-3xl text-right"
-          />
-          <div className="relative mt-12 min-h-[23rem]">
+          <div className="hidden md:block">
+            <SceneTitle
+              eyebrow="WORK SHOWCASE"
+              title="From presence to momentum."
+              text="We turn digital presence into measurable business movement — better trust, stronger leads, automated workflows, and scalable growth."
+              className="ml-auto max-w-3xl text-right"
+            />
+          </div>
+
+          <motion.div
+            className="md:hidden"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.28 }}
+          >
+            <motion.p
+              className="text-xs font-semibold uppercase tracking-[0.34em] text-[#F4C88B]/70"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.46, ease: premiumEase }}
+            >
+              HOW WE CREATE MOMENTUM
+            </motion.p>
+            <motion.h2
+              className="mt-5 max-w-[11ch] text-balance font-display text-[44px] font-medium leading-[1.05] tracking-[-0.024em] text-white"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.52, delay: 0.04, ease: premiumEase }}
+            >
+              From presence to momentum.
+            </motion.h2>
+            <motion.p
+              className="mt-6 text-pretty text-lg leading-8 text-slate-300"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.52, delay: 0.1, ease: premiumEase }}
+            >
+              We turn digital presence into measurable business movement — better trust, stronger leads, automated workflows, and scalable growth.
+            </motion.p>
+
+            <div className="relative mt-9 overflow-hidden rounded-[1.65rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.065),rgba(6,14,26,0.78)),radial-gradient(circle_at_50%_0%,rgba(244,200,139,0.12),transparent_42%)] px-4 py-5 shadow-[0_22px_60px_rgba(0,0,0,0.26)]">
+              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/38 to-transparent" />
+              <div className="pointer-events-none absolute left-1/2 top-8 h-56 w-56 -translate-x-1/2 rounded-full bg-[#E6A86A]/9 blur-3xl" />
+              <motion.div
+                className="relative z-10 mx-auto flex w-fit rounded-full border border-[#F4C88B]/22 bg-[#F4C88B]/10 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#F4C88B]"
+                initial={prefersReducedMotion ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 12, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.48, delay: 0.16, ease: premiumEase }}
+              >
+                Digital Presence
+              </motion.div>
+
+              <div className="relative z-10 mt-5">
+                <div className="pointer-events-none absolute left-4 top-1 h-[calc(100%-0.5rem)] w-px bg-white/[0.08]" />
+                <motion.div
+                  className="pointer-events-none absolute left-4 top-1 h-[calc(100%-0.5rem)] w-px origin-top bg-gradient-to-b from-transparent via-[#F4C88B]/78 to-transparent"
+                  initial={prefersReducedMotion ? { opacity: 0.8, scaleY: 1 } : { opacity: 0, scaleY: 0 }}
+                  whileInView={{ opacity: 1, scaleY: 1 }}
+                  viewport={{ once: true, amount: 0.42 }}
+                  transition={{ duration: 0.68, delay: 0.3, ease: premiumEase }}
+                />
+                <motion.span
+                  className="pointer-events-none absolute left-[0.69rem] top-1 z-20 h-2.5 w-2.5 rounded-full bg-[#F4C88B] shadow-[0_0_18px_rgba(244,200,139,0.76)]"
+                  initial={prefersReducedMotion ? { opacity: 0.85, y: 0 } : { opacity: 0, y: 0 }}
+                  whileInView={prefersReducedMotion ? { opacity: 0.85, y: 0 } : { opacity: [0, 1, 1, 0], y: [0, 0, 400, 400] }}
+                  viewport={{ once: true, amount: 0.42 }}
+                  transition={{ duration: 1.62, delay: 0.34, ease: premiumEase, times: [0, 0.12, 0.9, 1] }}
+                />
+                <div className="grid gap-3">
+                  {outcomeEngineStages.map((stage, index) => (
+                    <motion.div
+                      key={stage.number}
+                      className="relative pl-10"
+                      initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.46 }}
+                      transition={{ duration: 0.54, delay: 0.46 + index * 0.14, ease: premiumEase }}
+                    >
+                      <span className="absolute left-[0.69rem] top-8 z-20 h-2.5 w-2.5 rounded-full border border-[#F4C88B]/70 bg-[#071426] shadow-[0_0_15px_rgba(244,200,139,0.52)]" />
+                      <motion.span
+                        className="pointer-events-none absolute inset-x-0 -top-7 h-24 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(244,200,139,0.18),rgba(230,168,106,0.06)_44%,transparent_72%)]"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: prefersReducedMotion ? 0.14 : [0, 0.46, 0.15] }}
+                        viewport={{ once: true, amount: 0.46 }}
+                        transition={{ duration: 0.62, delay: 0.48 + index * 0.14, ease: premiumEase }}
+                      />
+                      <div className="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.09),rgba(9,18,32,0.76)),radial-gradient(circle_at_14%_0%,rgba(244,200,139,0.11),transparent_42%)] px-4 py-3.5 shadow-[0_16px_42px_rgba(0,0,0,0.23)] backdrop-blur">
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F4C88B]/35 to-transparent" />
+                        <div className="flex items-center gap-3">
+                          <span className="rounded-full border border-[#F4C88B]/20 bg-[#F4C88B]/10 px-2.5 py-1 text-[0.66rem] font-semibold tracking-[0.22em] text-[#F4C88B]">
+                            {stage.number}
+                          </span>
+                          <span className="h-px flex-1 bg-gradient-to-r from-[#F4C88B]/48 to-transparent" />
+                        </div>
+                        <div className="mt-3 flex items-start justify-between gap-3">
+                          <div>
+                            <h3 className="text-xl font-semibold tracking-[-0.01em] text-[#F8F6F1]">{stage.title}</h3>
+                            <p className="mt-2 text-sm leading-6 text-slate-300/82">{stage.copy}</p>
+                          </div>
+                          <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#F4C88B] shadow-[0_0_15px_rgba(244,200,139,0.72)]" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <motion.div
+                className="relative z-10 mx-auto mt-6 flex w-fit items-center gap-2 rounded-full border border-[#F4C88B]/28 bg-[#F4C88B]/12 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-[#F8F6F1] shadow-[0_0_28px_rgba(244,200,139,0.11)]"
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.52, delay: 1.06, ease: premiumEase }}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]" />
+                Momentum Created
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <div className="relative mt-12 hidden min-h-[23rem] md:block">
             <motion.svg viewBox="0 0 1200 420" className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
               <defs>
                 <linearGradient id="motion-path" x1="0" x2="1">
@@ -465,6 +720,8 @@ export function ImmersiveJourney() {
                 style={{ filter: "drop-shadow(0 0 8px rgba(212,175,110,0.08))" }}
               />
               <motion.circle
+                cx={22}
+                cy={300}
                 r="7"
                 fill="#F4C88B"
                 animate={
@@ -512,7 +769,7 @@ export function ImmersiveJourney() {
       </motion.section>
 
       <motion.section
-        className="relative z-10 flex min-h-[68svh] items-center overflow-visible px-5 pb-20 pt-16"
+        className="relative z-10 flex min-h-[auto] items-start overflow-visible px-6 pb-28 pt-20 md:min-h-[68svh] md:items-center md:px-5 md:pb-20 md:pt-16"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -520,14 +777,14 @@ export function ImmersiveJourney() {
         transition={sectionTransition}
       >
         <motion.div className="absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6A86A]/8 blur-2xl md:h-[44rem] md:w-[44rem] md:bg-[#E6A86A]/10 md:blur-3xl" animate={mobileFastMode ? undefined : { scale: [0.9, 1.12, 0.9] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
-        <div className="relative mx-auto w-full max-w-7xl -translate-y-3">
+        <div className="relative mx-auto w-full max-w-7xl md:-translate-y-3">
           <div className="pointer-events-none absolute -left-16 top-0 h-64 w-[46rem] rounded-full bg-[#E6A86A]/12 blur-3xl" />
           <motion.p
             initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-18%" }}
             transition={{ duration: isMobile ? 0.42 : 1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative max-w-[57.5rem] text-balance font-display text-6xl font-semibold leading-[1] tracking-[-0.028em] text-white md:text-8xl"
+            className="relative max-w-[57.5rem] text-balance font-display text-[48px] font-semibold leading-[1.04] tracking-[-0.028em] text-white md:text-8xl md:leading-[1]"
           >
             Build the digital presence markets remember.
           </motion.p>
@@ -536,7 +793,7 @@ export function ImmersiveJourney() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: isMobile ? 0.42 : 0.8, delay: isMobile ? 0.08 : 0.16 }}
-            className="mt-8 max-w-2xl text-pretty text-lg leading-8 text-slate-300/82"
+            className="mt-6 max-w-2xl text-pretty text-base leading-7 text-slate-300/82 md:mt-8 md:text-lg md:leading-8"
           >
             Turn your website, product, and automation systems into digital experiences your market remembers.
           </motion.p>
@@ -545,7 +802,7 @@ export function ImmersiveJourney() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: isMobile ? 0.42 : 0.8, delay: isMobile ? 0.08 : 0.25 }}
-            className="group relative mt-12 inline-flex"
+            className="group relative mt-10 inline-flex md:mt-12"
           >
             <span className="pointer-events-none absolute -inset-8 rounded-full bg-[#E6A86A]/14 blur-3xl transition duration-500 group-hover:bg-[#E6A86A]/20" />
             <MagneticLink href="/contact" className="group relative inline-flex items-center gap-4 text-xl font-semibold text-[#F4C88B]">

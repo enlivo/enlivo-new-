@@ -5,45 +5,22 @@ import Link from "next/link";
 import { AmbientMotion, FadeUp, PageTransition } from "../components/motion";
 import { HeroBlock, Shell } from "../components/ui";
 import { services } from "../lib/content";
+import { createPageMetadata, jsonLd, serviceSchema } from "../lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "Web Development, UI/UX & AI Automation | Enlivo" },
+export const metadata: Metadata = createPageMetadata({
+  title: "Services | Web, App, UI UX & AI Automation Company in Bangalore",
   description:
-    "Explore Enlivo services for web development company Bangalore needs, UI/UX design Bangalore, business website development India, and AI automation.",
+    "Explore Enlivo services for website development, app development, UI UX design, AI automation, and digital transformation systems in Bangalore.",
+  path: "/services",
   keywords: [
-    "website development Bangalore",
-    "UI/UX design Bangalore",
+    "website development company in Bangalore",
+    "app development company in Bangalore",
+    "UI UX design company in Bangalore",
     "business website development India",
-    "mobile app development Bangalore",
     "AI automation services",
-    "pharma website development",
     "digital transformation company",
   ],
-  openGraph: {
-    title: "Web Development, UI/UX & AI Automation | Enlivo",
-    description:
-      "Explore Enlivo services for web development company Bangalore needs, UI/UX design Bangalore, business website development India, and AI automation.",
-    url: "/services",
-    siteName: "Enlivo Global Tech Solutions",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/references/hero-main.png",
-        width: 1216,
-        height: 880,
-        alt: "Enlivo premium digital systems",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Web Development, UI/UX & AI Automation | Enlivo",
-    description:
-      "Explore Enlivo services for web development company Bangalore needs, UI/UX design Bangalore, business website development India, and AI automation.",
-    images: ["/references/hero-main.png"],
-  },
-};
+});
 
 export default function ServicesPage() {
   const process = [
@@ -56,6 +33,10 @@ export default function ServicesPage() {
   return (
     <PageTransition>
       <Shell>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(serviceSchema) }}
+        />
         <AmbientMotion />
         <style>{`
           @keyframes service-ecosystem-float {
@@ -232,13 +213,13 @@ export default function ServicesPage() {
             <path className="service-trace" id="service-path-website" d="M138 326 C248 118 456 322 690 208 C880 108 1014 188 1320 74" fill="none" filter="url(#service-signal-glow)" stroke="url(#service-band-signal)" strokeDasharray="10 18" strokeWidth="1.38" />
             <path className="service-trace" id="service-path-systems" d="M138 326 C300 354 452 560 672 404 C856 274 1016 438 1360 292" fill="none" filter="url(#service-signal-glow)" stroke="url(#service-band-signal)" strokeDasharray="8 20" strokeWidth="1.15" />
             <path className="service-trace" id="service-path-trust" d="M138 326 C330 210 520 160 720 304 C910 438 1128 396 1338 500" fill="none" filter="url(#service-signal-glow)" stroke="url(#service-band-signal)" strokeDasharray="7 18" strokeWidth="1" />
-            <circle r="4" fill="#F4C88B" opacity="0.62">
+            <circle cx="0" cy="0" r="4" fill="#F4C88B" opacity="0.62">
               <animateMotion dur="15s" repeatCount="indefinite" path="M138 326 C248 118 456 322 690 208 C880 108 1014 188 1320 74" />
             </circle>
-            <circle r="3.4" fill="#F8F1E4" opacity="0.5">
+            <circle cx="0" cy="0" r="3.4" fill="#F8F1E4" opacity="0.5">
               <animateMotion dur="18s" begin="-5s" repeatCount="indefinite" path="M138 326 C300 354 452 560 672 404 C856 274 1016 438 1360 292" />
             </circle>
-            <circle r="3.2" fill="#D9B27A" opacity="0.48">
+            <circle cx="0" cy="0" r="3.2" fill="#D9B27A" opacity="0.48">
               <animateMotion dur="21s" begin="-9s" repeatCount="indefinite" path="M138 326 C330 210 520 160 720 304 C910 438 1128 396 1338 500" />
             </circle>
           </svg>

@@ -5,13 +5,14 @@ import Link from "next/link";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 export const fadeUp = {
-  hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
 export const staggerContainer = {
-  hidden: { opacity: 1 },
+  hidden: { opacity: 0 },
   visible: {
+    opacity: 1,
     transition: {
       delayChildren: 0.04,
       staggerChildren: 0.04,
@@ -25,7 +26,7 @@ export const subtleScale = {
 };
 
 export const sectionReveal = {
-  hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -49,7 +50,15 @@ export function useIsMobile(breakpoint = 768) {
 }
 
 export function PageTransition({ children }: { children: ReactNode }) {
-  return <div className="motion-reveal">{children}</div>;
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export function FadeUp({
@@ -62,7 +71,19 @@ export function FadeUp({
   className?: string;
   style?: CSSProperties;
 }) {
-  return <div className={`motion-reveal ${className ?? ""}`} style={style}>{children}</div>;
+  return (
+    <motion.div
+      className={className}
+      style={style}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export function HeroReveal({
@@ -73,7 +94,16 @@ export function HeroReveal({
   delay?: number;
   className?: string;
 }) {
-  return <div className={`motion-reveal hero-content ${className ?? ""}`}>{children}</div>;
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export function MotionCard({

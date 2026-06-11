@@ -3,7 +3,7 @@
 import { LazyMotion, domAnimation, m as motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import type { MouseEvent } from "react";
-import { MagneticLink, useIsMobile } from "./motion";
+import { useIsMobile } from "./motion";
 
 const particles = Array.from({ length: 10 }, (_, index) => ({
   id: index,
@@ -12,10 +12,7 @@ const particles = Array.from({ length: 10 }, (_, index) => ({
   delay: index * 0.17,
 }));
 
-const headlineLines = ["Build What", "Markets", "Remember"];
-
 export function CinematicHero() {
-  const showIntro = false;
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const mobileFastMode = isMobile || prefersReducedMotion;
@@ -50,7 +47,7 @@ export function CinematicHero() {
     <section
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative isolate flex h-[100svh] min-h-[620px] items-center justify-center overflow-hidden px-5 pt-28 md:h-screen md:min-h-[720px]"
+      className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden px-5 pt-20 md:h-screen md:min-h-[720px] md:pt-28"
     >
       {/* Adds local hero keyframes for image-only Ken Burns motion and the bottom scroll cue. */}
       <style>{`
@@ -213,76 +210,52 @@ export function CinematicHero() {
       <div className="pointer-events-none absolute left-1/2 top-[46%] z-[1] h-[34rem] w-[92vw] max-w-[70vw] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,transparent_70%)] max-md:max-w-none" />
 
       <motion.div
-        className="hero-content relative z-10 mx-auto flex w-full max-w-5xl -translate-y-[128px] flex-col items-center pt-16 text-center will-change-[transform,opacity] md:-translate-y-[210px] md:pt-24"
+        className="hero-content relative z-30 mx-auto flex w-full max-w-5xl -translate-y-[128px] flex-col items-center pt-16 text-center will-change-[transform,opacity] md:z-10 md:-translate-y-[210px] md:pt-24"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.div className="flex max-w-[850px] flex-col items-center">
-          <motion.p
-            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
-            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: isMobile ? 0.42 : 0.8, delay: 0.04, ease: [0.22, 1, 0.36, 1] }}
-            className="hero-subtitle text-xs font-semibold uppercase tracking-[0.3em] text-[#F4C88B]/78 will-change-[transform,opacity]"
-          >
+        <div className="flex max-w-[850px] flex-col items-center">
+          <p className="hero-subtitle text-xs font-semibold uppercase tracking-[0.3em] text-[#F4C88B]/78">
             Private Limited Technology Company
-          </motion.p>
-          <motion.h1 className="hero-title mt-7 max-w-[850px] text-balance font-display text-5xl font-semibold leading-[1.01] tracking-[-0.028em] text-[#F8F6F1] drop-shadow-[0_0_24px_rgba(244,200,139,0.1)] sm:text-6xl md:text-7xl lg:text-[5.65rem]">
-            {headlineLines.map((line, index) => (
-              <motion.span
-                key={line}
-                className="hero-title block pb-[0.03em] will-change-[transform,opacity]"
-                initial={mobileFastMode ? { opacity: 1, y: 0 } : { opacity: 0, y: 18, filter: "blur(6px)" }}
-                animate={mobileFastMode ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={
-                  mobileFastMode
-                    ? { duration: 0 }
-                    : { duration: 0.8, delay: 0.12 + index * 0.18, ease: [0.22, 1, 0.36, 1] }
-                }
-              >
-                {line}
-              </motion.span>
-            ))}
-          </motion.h1>
-          <motion.p
-            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
-            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: isMobile ? 0.42 : 0.8, delay: isMobile ? 0.16 : 1.95, ease: [0.22, 1, 0.36, 1] }}
-            className="hero-subtitle mt-8 max-w-3xl text-pretty text-base leading-8 text-[rgba(255,255,255,0.82)] [text-shadow:0_0_18px_rgba(0,0,0,0.18)] will-change-[transform,opacity] md:text-lg"
-          >
+          </p>
+          <h1 className="hero-title mt-7 max-w-[850px] text-balance font-display text-5xl font-semibold leading-[1.01] tracking-[-0.028em] text-[#F8F6F1] sm:text-6xl md:text-7xl lg:text-[5.65rem]">
+            <span className="block pb-[0.03em]">Build What</span>
+            <span className="block pb-[0.03em]">Markets</span>
+            <span className="block pb-[0.03em]">Remember</span>
+          </h1>
+          <p className="hero-subtitle mt-8 max-w-3xl text-pretty text-base leading-8 text-[rgba(255,255,255,0.82)] [text-shadow:0_0_18px_rgba(0,0,0,0.18)] md:text-lg">
             We engineer digital systems that shape market memory.
-          </motion.p>
-          {/* Splits CTA hierarchy into a primary ivory pill and a lower-emphasis text link. */}
-          <motion.div
-            className="hero-actions mt-10 flex flex-col items-center gap-4 sm:flex-row"
-          >
+          </p>
+          <div className="hero-actions relative z-30 mt-10 flex flex-col items-center gap-4 opacity-100 sm:flex-row md:z-auto">
             <motion.div
-              initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
-              animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: isMobile ? 0.42 : 0.75, delay: isMobile ? 0.22 : 2.3, ease: [0.22, 1, 0.36, 1] }}
-              className="will-change-[transform,opacity]"
+              className="hero-cta-primary relative z-30 opacity-100"
+              whileHover={prefersReducedMotion ? undefined : { scale: 1.015 }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="group rounded-full">
-                <MagneticLink
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-[#F5F0E8] px-8 py-3.5 text-sm font-medium text-[#1a1a1a] shadow-[0_18px_44px_rgba(244,200,139,0.08)] transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_26px_64px_rgba(244,200,139,0.2)]"
-                >
-                  Start Your Project
-                </MagneticLink>
-              </div>
+              <Link
+                href="/contact"
+                className="hero-cta-link hero-cta-link-primary inline-flex items-center justify-center rounded-full bg-[#F5F0E8] px-8 py-3.5 text-sm font-medium text-[#07111d] opacity-100 transition-[background-color,border-color,transform] duration-300 hover:bg-white"
+              >
+                Start Your Project
+              </Link>
             </motion.div>
             <motion.div
-              initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, y: 12, filter: "blur(6px)" }}
-              animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: isMobile ? 0.42 : 0.75, delay: isMobile ? 0.28 : 2.42, ease: [0.22, 1, 0.36, 1] }}
-              className="will-change-[transform,opacity]"
+              className="hero-cta-secondary relative z-30 opacity-100"
+              whileHover={prefersReducedMotion ? undefined : { scale: 1.015 }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
               <Link
                 href="/portfolio"
-                className="inline-flex min-h-12 items-center justify-center px-2 py-3 text-sm font-medium text-white/[0.85] underline-offset-4 transition hover:-translate-y-0.5 hover:underline"
+                className="hero-cta-link hero-cta-link-secondary inline-flex min-h-12 items-center justify-center px-2 py-3 text-sm font-medium text-[#f5f5f5] opacity-100 underline-offset-4 transition-[text-decoration-color,color] duration-300 hover:underline"
               >
                 See Our Work →
               </Link>
             </motion.div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
       <div className="pointer-events-none absolute inset-0 z-20 opacity-[0.055] mix-blend-soft-light [background-image:radial-gradient(circle_at_20%_30%,#fff_0_1px,transparent_1px),radial-gradient(circle_at_70%_60%,#fff_0_1px,transparent_1px)] [background-size:3px_3px,4px_4px]" />
       {/* Places a section-bound scroll cue at the hero bottom to suggest continuation. */}
@@ -292,41 +265,6 @@ export function CinematicHero() {
           <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
-      {showIntro ? (
-        <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: [1, 1, 0] }}
-          transition={{ duration: 2.5, times: [0, 0.78, 1], ease: [0.22, 1, 0.36, 1] }}
-          aria-hidden="true"
-        >
-          {particles.slice(0, 6).map((particle) => (
-            <motion.span
-              key={`intro-${particle.id}`}
-              className="absolute h-1 w-1 rounded-full bg-[#F4C88B]/55 shadow-[0_0_16px_rgba(244,200,139,0.5)]"
-              style={{ left: particle.left, top: particle.top }}
-              animate={{ opacity: [0, 0.55, 0], y: [20, -26, -44] }}
-              transition={{ duration: 2.3, ease: "easeInOut", delay: particle.id * 0.05 }}
-            />
-          ))}
-          <motion.div
-            className="flex flex-col items-center text-center"
-            initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
-            animate={{ opacity: [0, 1, 1, 0], y: [18, 0, 0, -12], filter: ["blur(4px)", "blur(0px)", "blur(0px)", "blur(4px)"] }}
-            transition={{ duration: 2.35, times: [0, 0.24, 0.72, 1], ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.div
-              className="mb-7 grid h-16 w-16 place-items-center rounded-full border border-[#F4C88B]/30 bg-[#F4C88B]/10 text-lg font-black text-[#F8F6F1] shadow-[0_0_44px_rgba(244,200,139,0.2)]"
-            >
-              E
-            </motion.div>
-            <p className="text-sm font-semibold uppercase tracking-[0.48em] text-[#F4C88B]/82">ENLIVO</p>
-            <p className="mt-5 font-display text-4xl font-semibold leading-[1.02] tracking-[-0.028em] text-[#F8F6F1] md:text-6xl">
-              Build What Markets Remember
-            </p>
-          </motion.div>
-        </motion.div>
-      ) : null}
     </section>
     </LazyMotion>
   );

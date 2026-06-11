@@ -3,43 +3,24 @@ import { ArrowRight, BriefcaseBusiness, Clock3, Code2, Palette, ServerCog, Spark
 import { ApplicationForm } from "./application-form";
 import { FadeUp, PageTransition } from "../components/motion";
 import { ButtonLink, SectionIntro, Shell } from "../components/ui";
+import { createPageMetadata, jsonLd, trainingServiceSchema } from "../lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "Internships at Enlivo | Build Real Digital Systems" },
+export const metadata: Metadata = createPageMetadata({
+  title: "Careers & Internships at Enlivo | Bangalore Internship Programs",
   description:
-    "Apply for internships at Enlivo in web development, UI/UX, AI automation, cloud, DevOps, and digital business systems in Bangalore with guided project exposure.",
+    "Apply for Enlivo internship programs in Bangalore across web development, UI UX, AI automation, AWS, cloud and DevOps training, and digital business systems.",
+  path: "/careers",
   keywords: [
     "Enlivo careers",
     "internships at Enlivo",
+    "internship program in Bangalore",
     "web development internship Bangalore",
-    "UI UX internship Bangalore",
+    "UI UX design internship Bangalore",
+    "AWS training in Bangalore",
+    "cloud and DevOps training",
     "AI automation internship",
   ],
-  openGraph: {
-    title: "Internships at Enlivo | Build Real Digital Systems",
-    description:
-      "Apply for internships at Enlivo in web development, UI/UX, AI automation, cloud, DevOps, and digital business systems in Bangalore with guided project exposure.",
-    url: "/careers",
-    siteName: "Enlivo Global Tech Solutions",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/references/hero-main.png",
-        width: 1216,
-        height: 880,
-        alt: "Enlivo premium digital systems",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Internships at Enlivo | Build Real Digital Systems",
-    description:
-      "Apply for internships at Enlivo in web development, UI/UX, AI automation, cloud, DevOps, and digital business systems in Bangalore with guided project exposure.",
-    images: ["/references/hero-main.png"],
-  },
-};
+});
 
 const internshipTracks = [
   {
@@ -78,7 +59,11 @@ export default function CareersPage() {
   return (
     <PageTransition>
       <Shell>
-        <section className="relative overflow-hidden px-5 pb-14 pt-14 md:pb-[4.5rem] md:pt-[4.5rem]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(trainingServiceSchema) }}
+        />
+        <section className="relative overflow-hidden px-5 pb-14 pt-[180px] md:pb-[4.5rem] md:pt-[4.5rem]">
           <div className="pointer-events-none absolute left-[-20rem] top-0 h-[44rem] w-[58rem] rounded-full bg-[#E6A86A]/10 blur-[150px]" />
           <div className="pointer-events-none absolute right-[-20rem] bottom-[-16rem] h-[44rem] w-[58rem] rounded-full bg-[#F4C88B]/7 blur-[150px]" />
 

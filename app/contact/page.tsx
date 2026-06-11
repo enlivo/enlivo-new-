@@ -2,44 +2,24 @@ import type { Metadata } from "next";
 import { MessageCircle } from "lucide-react";
 import { PageTransition } from "../components/motion";
 import { Shell } from "../components/ui";
+import { createPageMetadata } from "../lib/seo";
 import { ContactForm } from "./contact-form";
 
-export const metadata: Metadata = {
-  title: { absolute: "Contact Enlivo | Build Your Digital Presence" },
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact Enlivo | Website, App & UI UX Company in Bangalore",
   description:
-    "Contact Enlivo for web development company Bangalore projects, UI/UX design, business website development India, and AI automation services.",
+    "Contact Enlivo Global Tech Solutions Private Limited in Bangalore for website development, app development, UI UX design, AI automation, and internship inquiries.",
+  path: "/contact",
   keywords: [
     "Enlivo Global Tech Solutions Private Limited",
-    "website development Bangalore",
-    "UI/UX design Bangalore",
+    "website development company in Bangalore",
+    "app development company in Bangalore",
+    "UI UX design company in Bangalore",
     "business website development India",
     "AI automation services",
+    "internship program in Bangalore",
   ],
-  openGraph: {
-    title: "Contact Enlivo | Build Your Digital Presence",
-    description:
-      "Contact Enlivo for web development company Bangalore projects, UI/UX design, business website development India, and AI automation services.",
-    url: "/contact",
-    siteName: "Enlivo Global Tech Solutions",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/references/hero-main.png",
-        width: 1216,
-        height: 880,
-        alt: "Enlivo premium digital systems",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Enlivo | Build Your Digital Presence",
-    description:
-      "Contact Enlivo for web development company Bangalore projects, UI/UX design, business website development India, and AI automation services.",
-    images: ["/references/hero-main.png"],
-  },
-};
+});
 
 const primaryPhone = "+91 89713 63921";
 const secondaryPhone = "+91 77278 67878";
@@ -48,9 +28,12 @@ export default function ContactPage() {
   return (
     <PageTransition>
       <Shell className="min-h-screen">
-        <section className="relative flex min-h-[calc(100vh-7rem)] items-center overflow-hidden px-5 py-16 md:py-20">
+        <section className="relative flex min-h-[calc(100vh-7rem)] items-center overflow-hidden px-5 pb-16 pt-32 md:py-20">
           <div className="pointer-events-none absolute left-[-22rem] top-10 h-[44rem] w-[58rem] rounded-full bg-[#E6A86A]/10 blur-[150px]" />
           <div className="pointer-events-none absolute right-[-18rem] bottom-[-14rem] h-[42rem] w-[58rem] rounded-full bg-[#F4C88B]/7 blur-[150px]" />
+          <p className="sr-only">
+            Enlivo Global Tech Solutions Private Limited, Bangalore, Karnataka, India. Phone: +91 89713 63921 and +91 77278 67878. Email: contact@enlivotechnologies.com. Website: https://enlivo.com.
+          </p>
 
           <div className="relative mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             <div className="relative max-w-3xl lg:-translate-y-7">

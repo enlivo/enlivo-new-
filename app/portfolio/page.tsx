@@ -4,43 +4,22 @@ import Link from "next/link";
 import { AmbientMotion, FadeUp, PageTransition } from "../components/motion";
 import { HeroBlock, Shell } from "../components/ui";
 import { portfolio } from "../lib/content";
+import { createPageMetadata } from "../lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "Our Work | Enlivo Global Tech Solutions" },
+export const metadata: Metadata = createPageMetadata({
+  title: "Portfolio | Enlivo Web, App & Digital Systems Work",
   description:
-    "See Enlivo portfolio projects across healthcare, pharma, recruitment, and business systems built to strengthen trust, clarity, and conversion.",
+    "See Enlivo portfolio work across websites, UI UX design, healthcare, pharma, recruitment, automation, and business systems built for trust and clarity.",
+  path: "/portfolio",
   keywords: [
     "Enlivo Technologies",
     "pharma website development",
-    "website development Bangalore",
-    "UI/UX design Bangalore",
+    "website development company in Bangalore",
+    "app development company in Bangalore",
+    "UI UX design company in Bangalore",
     "portfolio",
   ],
-  openGraph: {
-    title: "Our Work | Enlivo Global Tech Solutions",
-    description:
-      "See Enlivo portfolio projects across healthcare, pharma, recruitment, and business systems built to strengthen trust, clarity, and conversion.",
-    url: "/portfolio",
-    siteName: "Enlivo Global Tech Solutions",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/references/hero-main.png",
-        width: 1216,
-        height: 880,
-        alt: "Enlivo premium digital systems",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Our Work | Enlivo Global Tech Solutions",
-    description:
-      "See Enlivo portfolio projects across healthcare, pharma, recruitment, and business systems built to strengthen trust, clarity, and conversion.",
-    images: ["/references/hero-main.png"],
-  },
-};
+});
 
 const filters = ["All", "Healthcare", "Pharma", "Recruitment", "Business", "Automation"];
 
@@ -157,38 +136,45 @@ export default function PortfolioPage() {
               <path className="portfolio-signal" d="M112 126 C190 62 234 68 308 82 C384 96 412 118 466 164 C512 204 524 250 510 322" fill="none" stroke="url(#portfolio-hero-pulse)" strokeDasharray="48 472" strokeLinecap="round" strokeWidth="1.65" style={{ animation: "portfolio-signal-drift 5.8s cubic-bezier(0.22,1,0.36,1) infinite" }} />
               <path className="portfolio-signal" d="M112 126 C128 216 168 266 232 286 C330 318 418 332 510 322" fill="none" stroke="url(#portfolio-hero-pulse)" strokeDasharray="42 428" strokeLinecap="round" strokeWidth="1.35" style={{ animation: "portfolio-signal-drift 6.8s cubic-bezier(0.22,1,0.36,1) infinite 1.1s" }} />
               <path className="portfolio-signal" d="M232 286 C268 210 356 144 466 164" fill="none" stroke="url(#portfolio-hero-pulse)" strokeDasharray="34 250" strokeLinecap="round" strokeWidth="1.2" style={{ animation: "portfolio-signal-drift 5.2s cubic-bezier(0.22,1,0.36,1) infinite 2.2s" }} />
-              {constellationNodes.map((node, index) => (
-                <g key={node.name}>
-                  <circle
-                    className={node.active ? "portfolio-node-glow" : "portfolio-node-breathe"}
-                    cx={node.x}
-                    cy={node.y}
-                    r={node.active ? 42 : 30}
-                    fill="url(#portfolio-hero-node)"
-                    style={{
-                      transformOrigin: `${node.x}px ${node.y}px`,
-                      animation: node.active
-                        ? `portfolio-active-node ${4.4 + index * 0.25}s ease-in-out infinite`
-                        : `portfolio-node-breathe ${5.6 + index * 0.3}s ease-in-out infinite`,
-                    }}
-                  />
-                  <circle
-                    className="portfolio-node-breathe"
-                    cx={node.x}
-                    cy={node.y}
-                    r={node.active ? 4.8 : 3.7}
-                    fill="#F4C88B"
-                    opacity={node.active ? "0.9" : "0.56"}
-                    style={{
-                      transformOrigin: `${node.x}px ${node.y}px`,
-                      animation: `portfolio-node-breathe ${4.8 + index * 0.35}s ease-in-out infinite`,
-                    }}
-                  />
-                  <text x={node.x + 14} y={node.y + 5} fill="#F8F6F1" fillOpacity={node.active ? "0.78" : "0.52"} fontSize="13" fontWeight="600" letterSpacing="0">
-                    {node.name}
-                  </text>
-                </g>
-              ))}
+              {constellationNodes.map((node, index) => {
+                const x = Number.isFinite(node.x) ? node.x : 0;
+                const y = Number.isFinite(node.y) ? node.y : 0;
+                const glowRadius = node.active ? 42 : 30;
+                const nodeRadius = node.active ? 4.8 : 3.7;
+
+                return (
+                  <g key={node.name}>
+                    <circle
+                      className={node.active ? "portfolio-node-glow" : "portfolio-node-breathe"}
+                      cx={x}
+                      cy={y}
+                      r={glowRadius}
+                      fill="url(#portfolio-hero-node)"
+                      style={{
+                        transformOrigin: `${x}px ${y}px`,
+                        animation: node.active
+                          ? `portfolio-active-node ${4.4 + index * 0.25}s ease-in-out infinite`
+                          : `portfolio-node-breathe ${5.6 + index * 0.3}s ease-in-out infinite`,
+                      }}
+                    />
+                    <circle
+                      className="portfolio-node-breathe"
+                      cx={x}
+                      cy={y}
+                      r={nodeRadius}
+                      fill="#F4C88B"
+                      opacity={node.active ? "0.9" : "0.56"}
+                      style={{
+                        transformOrigin: `${x}px ${y}px`,
+                        animation: `portfolio-node-breathe ${4.8 + index * 0.35}s ease-in-out infinite`,
+                      }}
+                    />
+                    <text x={x + 14} y={y + 5} fill="#F8F6F1" fillOpacity={node.active ? "0.78" : "0.52"} fontSize="13" fontWeight="600" letterSpacing="0">
+                      {node.name}
+                    </text>
+                  </g>
+                );
+              })}
             </svg>
           </FadeUp>
         </HeroBlock>

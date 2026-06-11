@@ -1,91 +1,65 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Footer } from "./components/footer";
 import { Navbar } from "./components/navbar";
 import "./globals.css";
-
-const siteUrl = "https://enlivo.com";
-const ogImage = "/references/hero-main.png";
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Enlivo Global Tech Solutions Private Limited",
-  legalName: "Enlivo Global Tech Solutions Private Limited",
-  url: siteUrl,
-  logo: `${siteUrl}/logo/logo.png`,
-  email: "contact@enlivotechnologies.com",
-  telephone: ["+91 89713 63921", "+91 77278 67878"],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bangalore",
-    addressRegion: "Karnataka",
-    addressCountry: "IN",
-  },
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "contact@enlivotechnologies.com",
-      telephone: "+91 89713 63921",
-      areaServed: "IN",
-      availableLanguage: ["en"],
-    },
-    {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "contact@enlivotechnologies.com",
-      telephone: "+91 77278 67878",
-      areaServed: "IN",
-      availableLanguage: ["en"],
-    },
-  ],
-};
+import {
+  absoluteOgImage,
+  jsonLd,
+  legalName,
+  localBusinessSchema,
+  ogImage,
+  organizationSchema,
+  siteName,
+  siteUrl,
+  websiteSchema,
+} from "./lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Enlivo Global Tech Solutions Private Limited",
-    template: "%s | Enlivo Global Tech Solutions",
+    default: legalName,
+    template: `%s | ${siteName}`,
   },
   description:
-    "Bangalore-based digital engineering company for premium websites, UI/UX design, business website development, AI automation, and digital transformation.",
+    "Enlivo Global Tech Solutions Private Limited is a Bangalore digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
   keywords: [
     "Enlivo Technologies",
     "Enlivo Global Tech Solutions Private Limited",
-    "website development Bangalore",
-    "UI/UX design Bangalore",
+    "website development company in Bangalore",
+    "app development company in Bangalore",
+    "UI UX design company in Bangalore",
     "business website development India",
-    "mobile app development Bangalore",
     "AI automation solutions",
-    "AI automation services",
-    "pharma website development",
+    "AWS training in Bangalore",
+    "internship program in Bangalore",
+    "cloud and DevOps training",
     "digital transformation company",
   ],
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Enlivo Global Tech Solutions Private Limited",
+    title: legalName,
     description:
-      "Bangalore-based digital engineering company for premium websites, UI/UX design, business website development, AI automation, and digital transformation.",
+      "Enlivo Global Tech Solutions Private Limited is a Bangalore digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
     type: "website",
     locale: "en_IN",
-    siteName: "Enlivo Global Tech Solutions",
+    siteName,
     url: siteUrl,
     images: [
       {
         url: ogImage,
         width: 1216,
         height: 880,
-        alt: "Enlivo premium digital systems",
+        alt: "Enlivo digital systems interface preview",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Enlivo Global Tech Solutions Private Limited",
+    title: legalName,
     description:
-      "Bangalore-based digital engineering company for premium websites, UI/UX design, business website development, AI automation, and digital transformation.",
+      "Enlivo Global Tech Solutions Private Limited is a Bangalore digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
     images: [ogImage],
   },
   icons: {
@@ -105,12 +79,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className="h-full antialiased">
+      <head>
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link href="https://fonts.bunny.net/css?family=cabinet-grotesk:400,500,600,700,800&display=swap" rel="stylesheet" />
+        <meta property="og:image:secure_url" content={absoluteOgImage} />
+      </head>
       <body className="min-h-full bg-[#050D18] text-[#F8F6F1]">
-        <Script
-          id="organization-schema"
+        <script
+          id="site-structured-data"
           type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: jsonLd({
+              "@context": "https://schema.org",
+              "@graph": [organizationSchema, localBusinessSchema, websiteSchema],
+            }),
+          }}
         />
         <Navbar />
         <main>{children}</main>

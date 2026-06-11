@@ -30,7 +30,7 @@ const icons = {
 type IconName = keyof typeof icons;
 
 export function Shell({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`premium-bg relative overflow-hidden pt-28 text-white ${className}`}>{children}</div>;
+  return <div className={`premium-bg relative overflow-hidden pt-0 text-white md:pt-28 ${className}`}>{children}</div>;
 }
 
 export function SectionIntro({
@@ -146,6 +146,7 @@ export function HeroBlock({
   children,
   afterActions,
   compact = false,
+  mobileTopPadding = "default",
 }: {
   eyebrow: string;
   title: string;
@@ -157,9 +158,19 @@ export function HeroBlock({
   children?: ReactNode;
   afterActions?: ReactNode;
   compact?: boolean;
+  mobileTopPadding?: "default" | "large";
 }) {
+  const spacingClass =
+    mobileTopPadding === "large"
+      ? compact
+        ? "pb-[4.5rem] pt-40 md:pb-24 md:pt-24"
+        : "pb-20 pt-40 md:pb-28 md:pt-28"
+      : compact
+        ? "pb-[4.5rem] pt-32 md:pb-24 md:pt-24"
+        : "pb-20 pt-32 md:pb-28 md:pt-28";
+
   return (
-    <section className={`relative px-5 ${compact ? "pb-[4.5rem] pt-[4.5rem] md:pb-24 md:pt-24" : "pb-20 pt-20 md:pb-28 md:pt-28"}`}>
+    <section className={`relative px-5 ${spacingClass}`}>
       <div className={`mx-auto grid max-w-7xl items-center lg:grid-cols-[1.05fr_0.95fr] ${compact ? "gap-10" : "gap-12"}`}>
         <div>
           <HeroReveal>

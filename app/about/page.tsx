@@ -2,43 +2,22 @@ import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { AmbientMotion, FadeUp, MagneticLink, PageTransition } from "../components/motion";
 import { Shell } from "../components/ui";
+import { createPageMetadata } from "../lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "About Enlivo | Bangalore Digital Engineering Company" },
+export const metadata: Metadata = createPageMetadata({
+  title: "About Enlivo | Digital Engineering Company in Bangalore",
   description:
-    "Learn about Enlivo, a Bangalore digital engineering company building premium websites, apps, AI automation, and business systems for growth.",
+    "Learn about Enlivo Global Tech Solutions Private Limited, a Bangalore digital engineering company for websites, apps, UI UX design, automation, and business systems.",
+  path: "/about",
   keywords: [
     "Enlivo Technologies",
     "Enlivo Global Tech Solutions Private Limited",
-    "website development Bangalore",
-    "UI/UX design Bangalore",
+    "website development company in Bangalore",
+    "app development company in Bangalore",
+    "UI UX design company in Bangalore",
     "digital transformation company",
   ],
-  openGraph: {
-    title: "About Enlivo | Bangalore Digital Engineering Company",
-    description:
-      "Learn about Enlivo, a Bangalore digital engineering company building premium websites, apps, AI automation, and business systems for growth.",
-    url: "/about",
-    siteName: "Enlivo Global Tech Solutions",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/references/hero-main.png",
-        width: 1216,
-        height: 880,
-        alt: "Enlivo premium digital systems",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Enlivo | Bangalore Digital Engineering Company",
-    description:
-      "Learn about Enlivo, a Bangalore digital engineering company building premium websites, apps, AI automation, and business systems for growth.",
-    images: ["/references/hero-main.png"],
-  },
-};
+});
 
 export default function AboutPage() {
   const principles = [
@@ -104,25 +83,25 @@ export default function AboutPage() {
                 <circle cx="536" cy="202" r="2" fill="#F4C88B" opacity="0.1" />
               </g>
               <g filter="url(#about-node-soft-glow)">
-                <circle r="18" fill="url(#about-node-glow)" opacity="0.36">
+                <circle cx="0" cy="0" r="18" fill="url(#about-node-glow)" opacity="0.36">
                   <animateMotion dur="18s" repeatCount="indefinite" path="M82 316 C178 156 282 242 374 134 C442 54 528 84 596 42" />
                 </circle>
-                <circle r="5" fill="#F8F1E4" opacity="0.52">
+                <circle cx="0" cy="0" r="5" fill="#F8F1E4" opacity="0.52">
                   <animateMotion dur="18s" repeatCount="indefinite" path="M82 316 C178 156 282 242 374 134 C442 54 528 84 596 42" />
                 </circle>
-                <circle r="13" fill="url(#about-node-glow)" opacity="0.26">
+                <circle cx="0" cy="0" r="13" fill="url(#about-node-glow)" opacity="0.26">
                   <animateMotion dur="22s" begin="-6s" repeatCount="indefinite" path="M118 370 C230 260 266 292 376 214 C456 158 500 164 588 112" />
                 </circle>
-                <circle r="4" fill="#F4C88B" opacity="0.42">
+                <circle cx="0" cy="0" r="4" fill="#F4C88B" opacity="0.42">
                   <animateMotion dur="22s" begin="-6s" repeatCount="indefinite" path="M118 370 C230 260 266 292 376 214 C456 158 500 164 588 112" />
                 </circle>
-                <circle r="10" fill="url(#about-node-glow)" opacity="0.22">
+                <circle cx="0" cy="0" r="10" fill="url(#about-node-glow)" opacity="0.22">
                   <animateMotion dur="25s" begin="-12s" repeatCount="indefinite" path="M168 102 L284 236 L418 132 L536 202" />
                 </circle>
-                <circle r="3.5" fill="#F4C88B" opacity="0.36">
+                <circle cx="0" cy="0" r="3.5" fill="#F4C88B" opacity="0.36">
                   <animateMotion dur="25s" begin="-12s" repeatCount="indefinite" path="M168 102 L284 236 L418 132 L536 202" />
                 </circle>
-                <circle r="12" fill="url(#about-node-glow)" opacity="0.24">
+                <circle cx="0" cy="0" r="12" fill="url(#about-node-glow)" opacity="0.24">
                   <animateMotion dur="20s" begin="-3s" repeatCount="indefinite" path="M116 318 L258 288 L378 216 L520 112" />
                 </circle>
               </g>
@@ -167,7 +146,7 @@ export default function AboutPage() {
                 </linearGradient>
               </defs>
               <path d="M78 48 C242 16 356 82 520 48 C694 12 786 82 940 48 C1038 26 1100 32 1126 44" fill="none" stroke="url(#about-values-line)" strokeWidth="1.38" strokeLinecap="round" />
-              <circle r="3.5" fill="#F4C88B" opacity="0.5">
+              <circle cx="0" cy="0" r="3.5" fill="#F4C88B" opacity="0.5">
                 <animateMotion dur="7.5s" repeatCount="indefinite" path="M78 48 C242 16 356 82 520 48 C694 12 786 82 940 48 C1038 26 1100 32 1126 44" />
               </circle>
             </svg>
