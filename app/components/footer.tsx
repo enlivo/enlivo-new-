@@ -10,7 +10,6 @@ const companyLinks = [
 ];
 
 const programLinks = ["Web Development", "UI/UX Design", "AI Automation", "Cloud & DevOps"];
-const primaryPhone = "+91 89713 63921";
 const secondaryPhone = "+91 77278 67878";
 
 export function Footer() {
@@ -83,14 +82,9 @@ export function Footer() {
               <a href="mailto:contact@enlivotechnologies.com" className="w-fit transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
                 contact@enlivotechnologies.com
               </a>
-              <div className="grid gap-1">
-                <a href="tel:+918971363921" className="w-fit transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
-                  {primaryPhone}
-                </a>
-                <a href="tel:+917727867878" className="w-fit transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
-                  {secondaryPhone}
-                </a>
-              </div>
+              <a href="tel:+917727867878" className="w-fit transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
+                {secondaryPhone}
+              </a>
               <p>Bangalore, India</p>
             </div>
           </div>
@@ -103,14 +97,9 @@ export function Footer() {
               <a href="mailto:contact@enlivotechnologies.com" className="transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
                 contact@enlivotechnologies.com
               </a>
-              <div className="grid gap-1">
-                <a href="tel:+918971363921" className="transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
-                  {primaryPhone}
-                </a>
-                <a href="tel:+917727867878" className="transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
-                  {secondaryPhone}
-                </a>
-              </div>
+              <a href="tel:+917727867878" className="transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
+                {secondaryPhone}
+              </a>
               <p>Bangalore, India</p>
             </div>
           </div>

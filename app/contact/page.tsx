@@ -21,7 +21,6 @@ export const metadata: Metadata = createPageMetadata({
   ],
 });
 
-const primaryPhone = "+91 89713 63921";
 const secondaryPhone = "+91 77278 67878";
 
 export default function ContactPage() {
@@ -32,7 +31,7 @@ export default function ContactPage() {
           <div className="pointer-events-none absolute left-[-22rem] top-10 h-[44rem] w-[58rem] rounded-full bg-[#E6A86A]/10 blur-[150px]" />
           <div className="pointer-events-none absolute right-[-18rem] bottom-[-14rem] h-[42rem] w-[58rem] rounded-full bg-[#F4C88B]/7 blur-[150px]" />
           <p className="sr-only">
-            Enlivo Global Tech Solutions Private Limited, Bangalore, Karnataka, India. Phone: +91 89713 63921 and +91 77278 67878. Email: contact@enlivotechnologies.com. Website: https://enlivo.com.
+            Enlivo Global Tech Solutions Private Limited, Bangalore, Karnataka, India. Phone: +91 77278 67878. Email: contact@enlivotechnologies.com. Website: https://enlivo.com.
           </p>
 
           <div className="relative mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
@@ -64,18 +63,12 @@ export default function ContactPage() {
                   <span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/78 shadow-[0_0_12px_rgba(244,200,139,0.28)]" />
                   contact@enlivotechnologies.com
                 </a>
-                <div className="flex flex-col gap-1 text-[#F8F6F1]/74">
-                  <a href="tel:+918971363921" className="flex items-center gap-2.5 transition hover:text-[#F4C88B]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/78 shadow-[0_0_12px_rgba(244,200,139,0.28)]" />
-                    {primaryPhone}
-                  </a>
-                  <a href="tel:+917727867878" className="flex items-center gap-2.5 transition hover:text-[#F4C88B]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/58 shadow-[0_0_12px_rgba(244,200,139,0.22)]" />
-                    {secondaryPhone}
-                  </a>
-                </div>
+                <a href="tel:+917727867878" className="flex items-center gap-2.5 transition hover:text-[#F4C88B]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/78 shadow-[0_0_12px_rgba(244,200,139,0.28)]" />
+                  {secondaryPhone}
+                </a>
                 <a
-                  href="https://wa.me/918971363921"
+                  href="https://wa.me/917727867878"
                   target="_blank"
                   rel="noreferrer"
                   className="group inline-flex items-center gap-2.5 rounded-full border border-[#F4C88B]/14 bg-[rgba(5,13,24,0.52)] px-4 py-2.5 text-white shadow-[0_14px_36px_rgba(0,0,0,0.18)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#F4C88B]/28 hover:shadow-[0_18px_48px_rgba(0,0,0,0.24),0_0_22px_rgba(212,175,110,0.12)]"
@@ -104,7 +97,7 @@ export default function ContactPage() {
         </section>
 
         <a
-          href="https://wa.me/918971363921"
+          href="https://wa.me/917727867878"
           target="_blank"
           rel="noreferrer"
           aria-label="Chat on WhatsApp"
