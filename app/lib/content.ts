@@ -132,7 +132,7 @@ export const portfolio = [
 ];
 
 export const whyChoose = [
-  "Bangalore-based Private Limited company with a business-first delivery mindset.",
+  "Private Limited company with a business-first delivery mindset.",
   "Premium Interface Engineering across websites, apps, dashboards, and customer journeys.",
   "AI-Powered Business Automation for practical workflows, not experimental theatre.",
   "Conversion-Focused Design Systems built for clarity, trust, and measurable business action.",

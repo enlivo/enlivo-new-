@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description:
-    "Enlivo Global Tech Solutions Private Limited is a Bangalore digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
+    "Enlivo Global Tech Solutions Private Limited is a digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
   keywords: [
     "Enlivo Technologies",
     "Enlivo Global Tech Solutions Private Limited",
-    "website development company in Bangalore",
-    "app development company in Bangalore",
-    "UI UX design company in Bangalore",
+    "website development company",
+    "app development company",
+    "UI UX design company",
     "business website development India",
     "AI automation solutions",
-    "AWS training in Bangalore",
-    "internship program in Bangalore",
+    "AWS training",
+    "internship program",
     "cloud and DevOps training",
     "digital transformation company",
   ],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: legalName,
     description:
-      "Enlivo Global Tech Solutions Private Limited is a Bangalore digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
+      "Enlivo Global Tech Solutions Private Limited is a digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
     type: "website",
     locale: "en_IN",
     siteName,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: legalName,
     description:
-      "Enlivo Global Tech Solutions Private Limited is a Bangalore digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
+      "Enlivo Global Tech Solutions Private Limited is a digital engineering company for websites, apps, UI UX design, AI automation, and digital transformation.",
     images: [ogImage],
   },
   icons: {

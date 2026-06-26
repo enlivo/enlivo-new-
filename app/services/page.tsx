@@ -8,14 +8,14 @@ import { services } from "../lib/content";
 import { createPageMetadata, jsonLd, serviceSchema } from "../lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Services | Web, App, UI UX & AI Automation Company in Bangalore",
+  title: "Services | Web, App, UI UX & AI Automation Company",
   description:
-    "Explore Enlivo services for website development, app development, UI UX design, AI automation, and digital transformation systems in Bangalore.",
+    "Explore Enlivo services for website development, app development, UI UX design, AI automation, and digital transformation systems.",
   path: "/services",
   keywords: [
-    "website development company in Bangalore",
-    "app development company in Bangalore",
-    "UI UX design company in Bangalore",
+    "website development company",
+    "app development company",
+    "UI UX design company",
     "business website development India",
     "AI automation services",
     "digital transformation company",

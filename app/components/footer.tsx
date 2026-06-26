@@ -10,8 +10,6 @@ const companyLinks = [
 ];
 
 const programLinks = ["Web Development", "UI/UX Design", "AI Automation", "Cloud & DevOps"];
-const secondaryPhone = "+91 77278 67878";
-
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-[#D4AF37]/18 bg-[linear-gradient(180deg,#091522_0%,#050d18_48%,#02060d_100%)] px-5 py-12 text-white md:py-14">
@@ -82,10 +80,6 @@ export function Footer() {
               <a href="mailto:contact@enlivotechnologies.com" className="w-fit transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
                 contact@enlivotechnologies.com
               </a>
-              <a href="tel:+917727867878" className="w-fit transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
-                {secondaryPhone}
-              </a>
-              <p>Bangalore, India</p>
             </div>
           </div>
         </div>
@@ -97,16 +91,12 @@ export function Footer() {
               <a href="mailto:contact@enlivotechnologies.com" className="transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
                 contact@enlivotechnologies.com
               </a>
-              <a href="tel:+917727867878" className="transition duration-300 hover:text-[#F4C88B] hover:drop-shadow-[0_0_10px_rgba(244,200,139,0.22)]">
-                {secondaryPhone}
-              </a>
-              <p>Bangalore, India</p>
             </div>
           </div>
         </div>
 
         <div className="mt-6 flex flex-col gap-2 border-t border-[#D4AF37]/12 pt-4 text-center text-[0.74rem] leading-5 text-[#F8F6F1]/56 md:mt-8 md:flex-row md:items-center md:justify-between md:text-sm md:leading-normal">
-          <p className="font-medium tracking-[0.08em] text-[#F4C88B]/78 max-md:tracking-[0.06em]">Engineered in Bangalore. Built for ambitious digital systems.</p>
+          <p className="font-medium tracking-[0.08em] text-[#F4C88B]/78 max-md:tracking-[0.06em]">Built for ambitious digital systems.</p>
           <p>Copyright 2026 Enlivo Global Tech Solutions Private Limited.</p>
         </div>
       </div>

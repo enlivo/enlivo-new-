@@ -14,9 +14,9 @@ export const metadata: Metadata = createPageMetadata({
   keywords: [
     "Enlivo Technologies",
     "pharma website development",
-    "website development company in Bangalore",
-    "app development company in Bangalore",
-    "UI UX design company in Bangalore",
+    "website development company",
+    "app development company",
+    "UI UX design company",
     "portfolio",
   ],
 });

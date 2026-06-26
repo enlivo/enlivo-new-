@@ -215,7 +215,7 @@ export function MetricPanel() {
           ))}
         </div>
         <div className="rounded-2xl bg-[linear-gradient(135deg,#E6A86A,#D9B27A)] p-5 text-[#050D18] shadow-xl shadow-[#F4C88B]/20">
-          <p className="text-sm uppercase tracking-[0.22em] text-[#050D18]/70">Bangalore, India</p>
+          <p className="text-sm uppercase tracking-[0.22em] text-[#050D18]/70">India</p>
           <p className="mt-3 text-2xl font-semibold tracking-tight">Private Limited technology partner for premium digital execution.</p>
         </div>
       </div>

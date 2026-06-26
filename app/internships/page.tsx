@@ -7,20 +7,20 @@ import { createPageMetadata, jsonLd, trainingServiceSchema } from "../lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Internship Programs at Enlivo | AWS, Cloud & DevOps Training",
   description:
-    "Explore Enlivo internship programs in Bangalore with AWS training, cloud and DevOps training, Linux fundamentals, mentorship, and real project exposure.",
+    "Explore Enlivo internship programs with AWS training, cloud and DevOps training, Linux fundamentals, mentorship, and real project exposure.",
   path: "/internships",
   keywords: [
-    "internship program in Bangalore",
-    "AWS training in Bangalore",
+    "internship program",
+    "AWS training",
     "cloud and DevOps training",
     "AWS DevOps internship",
     "Linux internship",
-    "Cloud internship Bangalore",
+    "Cloud internship",
   ],
 });
 
 export default function InternshipsPage() {
-  const heroMeta = ["1-3 Months", "Hybrid", "Bangalore Preferred", "Real Systems"];
+  const heroMeta = ["1-3 Months", "Hybrid", "Remote Friendly", "Real Systems"];
   const heroMetrics = [
     ["6", "program pillars"],
     ["Real", "project exposure"],

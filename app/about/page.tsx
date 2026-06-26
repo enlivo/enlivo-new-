@@ -5,16 +5,16 @@ import { Shell } from "../components/ui";
 import { createPageMetadata } from "../lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Enlivo | Digital Engineering Company in Bangalore",
+  title: "About Enlivo | Digital Engineering Company",
   description:
-    "Learn about Enlivo Global Tech Solutions Private Limited, a Bangalore digital engineering company for websites, apps, UI UX design, automation, and business systems.",
+    "Learn about Enlivo Global Tech Solutions Private Limited, a digital engineering company for websites, apps, UI UX design, automation, and business systems.",
   path: "/about",
   keywords: [
     "Enlivo Technologies",
     "Enlivo Global Tech Solutions Private Limited",
-    "website development company in Bangalore",
-    "app development company in Bangalore",
-    "UI UX design company in Bangalore",
+    "website development company",
+    "app development company",
+    "UI UX design company",
     "digital transformation company",
   ],
 });
@@ -23,7 +23,7 @@ export default function AboutPage() {
   const principles = [
     {
       title: "Who We Are",
-      text: "We are a Bangalore-based technology company focused on building digital systems that combine strategy, interface design, engineering, and automation.",
+      text: "We are a technology company focused on building digital systems that combine strategy, interface design, engineering, and automation.",
     },
     {
       title: "Vision",

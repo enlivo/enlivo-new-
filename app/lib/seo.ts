@@ -4,17 +4,8 @@ export const siteUrl = "https://enlivo.com";
 export const siteName = "Enlivo Global Tech Solutions";
 export const legalName = "Enlivo Global Tech Solutions Private Limited";
 export const contactEmail = "contact@enlivotechnologies.com";
-export const primaryPhone = "+91 89713 63921";
-export const secondaryPhone = "+91 77278 67878";
 export const ogImage = "/references/hero-main.png";
 export const absoluteOgImage = `${siteUrl}${ogImage}`;
-
-export const bangaloreAddress = {
-  "@type": "PostalAddress",
-  addressLocality: "Bangalore",
-  addressRegion: "Karnataka",
-  addressCountry: "IN",
-};
 
 export function routeUrl(path = "/") {
   return path === "/" ? siteUrl : `${siteUrl}${path}`;
@@ -77,22 +68,11 @@ export const organizationSchema = {
   logo: `${siteUrl}/logo/logo.png`,
   image: absoluteOgImage,
   email: contactEmail,
-  telephone: [primaryPhone, secondaryPhone],
-  address: bangaloreAddress,
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "sales",
       email: contactEmail,
-      telephone: primaryPhone,
-      areaServed: "IN",
-      availableLanguage: ["en"],
-    },
-    {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: contactEmail,
-      telephone: secondaryPhone,
       areaServed: "IN",
       availableLanguage: ["en"],
     },
@@ -108,14 +88,8 @@ export const localBusinessSchema = {
   image: absoluteOgImage,
   logo: `${siteUrl}/logo/logo.png`,
   email: contactEmail,
-  telephone: primaryPhone,
-  address: bangaloreAddress,
   priceRange: "$$",
   areaServed: [
-    {
-      "@type": "City",
-      name: "Bangalore",
-    },
     {
       "@type": "Country",
       name: "India",
@@ -144,19 +118,19 @@ export const serviceSchema = {
     "@id": `${siteUrl}/#organization`,
   },
   areaServed: {
-    "@type": "City",
-    name: "Bangalore",
+    "@type": "Country",
+    name: "India",
   },
   serviceType: [
-    "Website development company in Bangalore",
-    "App development company in Bangalore",
-    "UI UX design company in Bangalore",
+    "Website development company",
+    "App development company",
+    "UI UX design company",
     "AI automation services",
     "Digital transformation systems",
   ],
   url: `${siteUrl}/services`,
   description:
-    "Enlivo designs and engineers websites, mobile product experiences, UI UX systems, AI automation workflows, and digital transformation systems for businesses in Bangalore and India.",
+    "Enlivo designs and engineers websites, mobile product experiences, UI UX systems, AI automation workflows, and digital transformation systems for businesses across India.",
 };
 
 export const trainingServiceSchema = {
@@ -168,17 +142,17 @@ export const trainingServiceSchema = {
     "@id": `${siteUrl}/#organization`,
   },
   areaServed: {
-    "@type": "City",
-    name: "Bangalore",
+    "@type": "Country",
+    name: "India",
   },
   serviceType: [
-    "AWS training in Bangalore",
-    "Internship program in Bangalore",
+    "AWS training",
+    "Internship program",
     "Cloud and DevOps training",
     "Web development internship",
     "UI UX internship",
   ],
   url: `${siteUrl}/careers`,
   description:
-    "Enlivo offers internship programs and guided training exposure in web development, UI UX, AI automation, AWS, cloud, Linux, and DevOps workflows in Bangalore.",
+    "Enlivo offers internship programs and guided training exposure in web development, UI UX, AI automation, AWS, cloud, Linux, and DevOps workflows.",
 };

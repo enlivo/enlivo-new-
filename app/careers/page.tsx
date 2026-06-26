@@ -6,17 +6,17 @@ import { ButtonLink, SectionIntro, Shell } from "../components/ui";
 import { createPageMetadata, jsonLd, trainingServiceSchema } from "../lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Careers & Internships at Enlivo | Bangalore Internship Programs",
+  title: "Careers & Internships at Enlivo | Internship Programs",
   description:
-    "Apply for Enlivo internship programs in Bangalore across web development, UI UX, AI automation, AWS, cloud and DevOps training, and digital business systems.",
+    "Apply for Enlivo internship programs across web development, UI UX, AI automation, AWS, cloud and DevOps training, and digital business systems.",
   path: "/careers",
   keywords: [
     "Enlivo careers",
     "internships at Enlivo",
-    "internship program in Bangalore",
-    "web development internship Bangalore",
-    "UI UX design internship Bangalore",
-    "AWS training in Bangalore",
+    "internship program",
+    "web development internship",
+    "UI UX design internship",
+    "AWS training",
     "cloud and DevOps training",
     "AI automation internship",
   ],
@@ -90,7 +90,7 @@ export default function CareersPage() {
                 <span className="text-[#D4AF6E]/42">•</span>
                 <span>Hybrid</span>
                 <span className="text-[#D4AF6E]/42">•</span>
-                <span>Bangalore preferred</span>
+                <span>Hybrid</span>
                 <span className="text-[#D4AF6E]/42">•</span>
                 <span>Real systems</span>
               </FadeUp>
@@ -104,7 +104,7 @@ export default function CareersPage() {
                 <span className="text-[#D4AF37]/55">•</span>
                 <span>Real Client Projects</span>
                 <span className="text-[#D4AF37]/55">•</span>
-                <span>Bangalore-Based Hybrid Learning</span>
+                <span>Hybrid Learning</span>
               </FadeUp>
             </div>
 
@@ -138,7 +138,7 @@ export default function CareersPage() {
             <SectionIntro
               eyebrow="Internship openings"
               title="Choose a track built around useful skills and real project exposure."
-              text="Each internship follows a 1-3 month structure with hybrid participation and Bangalore preference."
+              text="Each internship follows a 1-3 month structure with hybrid participation."
             />
 
             <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -159,7 +159,7 @@ export default function CareersPage() {
                     <div className="mt-5 grid content-start gap-3 border-t border-white/8 pt-5 text-sm text-slate-300">
                       <p><span className="text-[#F4C88B]/78">Skills preferred:</span> {track.skills}</p>
                       <p className="flex items-center gap-2"><Clock3 size={15} className="text-[#F4C88B]/78" /> Duration: 1-3 months</p>
-                      <p>Mode: Hybrid / Bangalore preferred</p>
+                      <p>Mode: Hybrid / Remote</p>
                     </div>
                     <a
                       href="#application"

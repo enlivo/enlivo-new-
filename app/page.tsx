@@ -5,14 +5,14 @@ import { Shell } from "./components/ui";
 import { createPageMetadata } from "./lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Enlivo Global Tech Solutions | Website Development Company in Bangalore",
+  title: "Enlivo Global Tech Solutions | Website Development Company",
   description:
-    "Enlivo Global Tech Solutions builds websites, apps, UI UX systems, AI automation, and digital transformation workflows for businesses in Bangalore.",
+    "Enlivo Global Tech Solutions builds websites, apps, UI UX systems, AI automation, and digital transformation workflows for businesses across India.",
   path: "/",
   keywords: [
-    "website development company in Bangalore",
-    "app development company in Bangalore",
-    "UI UX design company in Bangalore",
+    "website development company",
+    "app development company",
+    "UI UX design company",
     "business website development India",
     "AI automation services",
     "digital transformation company",

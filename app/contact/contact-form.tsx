@@ -135,7 +135,7 @@ export function ContactForm() {
       <div className="grid gap-5 pt-1">
         <div className="flex flex-wrap gap-x-4 gap-y-2 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-white/42">
           <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/62" />Response within 24 hours</span>
-          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/62" />Bangalore, India</span>
+          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/62" />India</span>
           <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[#F4C88B]/62" />Business-first consultation</span>
         </div>
         <button
